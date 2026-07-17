@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Flow Tech | Automação Inteligente de Processos</title>
+<meta name="description" content="Especialistas em Automação Empresarial, Inteligência Artificial, Integração de Sistemas, Dashboards Power BI, Power Platform, Workflows Inteligentes e Transformação Digital.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #001629;
+    --primary-container: #002B49;
+    --on-primary: #ffffff;
+    --on-primary-container: #7293b6;
+    --secondary: #964900;
+    --secondary-container: #ff8928;
+    --on-secondary: #ffffff;
+    --on-secondary-container: #642f00;
+    --surface: #f7f9fb;
+    --surface-container: #eceef0;
+    --surface-container-low: #f2f4f6;
+    --surface-container-high: #e6e8ea;
+    --on-surface: #191c1e;
+    --on-surface-variant: #42474d;
+    --outline: #73777e;
+    --outline-variant: #c3c7ce;
+    --inverse-surface: #2d3133;
+    --inverse-on-surface: #eff1f3;
+    --error: #ba1a1a;
+    --surface-tint: #406182;
+    /* Legacy aliases for minimal diff */
+    --blue-dark: #001629;
+    --blue-mid: #002B49;
+    --blue-light: #406182;
+    --orange: #ff8928;
+    --orange-light: #ffb786;
+    --gray-bg: #f7f9fb;
+    --white: #ffffff;
+    --text-dark: #191c1e;
+    --text-mid: #42474d;
+    --text-light: #73777e;
+    --border: #c3c7ce;
+    --glass: rgba(255,255,255,0.08);
+    --shadow-sm: 0 2px 12px rgba(0,22,41,0.08);
+    --shadow-md: 0 8px 32px rgba(0,43,73,0.14);
+    --shadow-lg: 0 20px 60px rgba(0,43,73,0.18);
+    --radius: 1rem;
+    --radius-sm: 0.5rem;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Hanken Grotesk', sans-serif; font-size: 16px; line-height: 1.5; color: var(--on-surface); background: var(--white); overflow-x: hidden; }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  header.scrolled { box-shadow: var(--shadow-md); }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; line-height: 1; }
+  .logo-img { display: block; width: auto; object-fit: contain; }
+  header .logo-img { height: 36px; max-height: 36px; }
+  .footer-brand .logo-img { height: 40px; max-height: 40px; }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 15px; color: white; letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(11,58,99,0.3);
+    flex-shrink: 0;
+  }
+  .logo-copy { display: flex; flex-direction: column; gap: 2px; align-items: center; }
+  .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; line-height: 1; white-space: nowrap; text-align: center; }
+  .logo-tech { font-family: 'Geist Mono', monospace; font-weight: 500; font-size: 12px; letter-spacing: 0.05em; color: var(--text-light); text-transform: uppercase; text-align: center; }
+  .logo-text span:first-child { color: var(--blue-dark); }
+  .logo-text span:last-child { color: var(--orange); }
+  nav { display: flex; align-items: center; gap: 2px; }
+  nav a {
+    font-size: 14px; font-weight: 500; color: var(--text-mid);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    transition: all .2s;
+  }
+  nav a:hover { color: var(--blue-mid); background: rgba(21,101,169,0.06); }
+  .btn-primary {
+    font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px;
+    color: var(--on-primary); background: linear-gradient(135deg, var(--primary-container), var(--primary));
+    border: none; padding: 10px 20px; border-radius: var(--radius-sm); cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    transition: all .25s; box-shadow: var(--shadow-sm);
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0; transition: opacity .25s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(150,73,0,0.3); }
+  .btn-primary:hover::after { opacity: 1; }
+  .btn-secondary {
+    font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px;
+    color: var(--surface-tint); background: transparent;
+    border: 2px solid var(--outline-variant); padding: 10px 20px; border-radius: var(--radius-sm);
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    transition: all .25s;
+  }
+  .btn-secondary:hover { background: var(--primary); color: var(--on-primary); border-color: var(--primary); transform: translateY(-2px); }
+  .btn-orange {
+    background: linear-gradient(135deg, var(--secondary-container), var(--secondary));
+    box-shadow: 0 4px 14px rgba(150,73,0,0.25);
+  }
+  .btn-orange:hover { box-shadow: 0 8px 24px rgba(150,73,0,0.4); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; transition: all .3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; padding: 120px 5% 80px;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px;
+    background: linear-gradient(135deg, #F5F7FA 0%, #EBF1FA 50%, #F5F7FA 100%);
+    position: relative; overflow: hidden;
+  }
+  .shield-svg {
+    width: 300px; height: auto; display: block; object-fit: contain; background: transparent;
+    filter: drop-shadow(0 20px 60px rgba(11,58,99,0.35));
+    position: relative; z-index: 2;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(21,101,169,0.08) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -100px; left: -100px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(242,140,40,0.06) 0%, transparent 70%);
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,22,41,0.06); border: 1px solid var(--outline-variant);
+    border-radius: 9999px; padding: 6px 16px; margin-bottom: 24px;
+    font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--surface-tint);
+    animation: fadeUp .6s ease both;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
+    font-size: clamp(28px, 4vw, 48px); line-height: 1.17;
+    letter-spacing: -0.02em;
+    color: var(--blue-dark); margin-bottom: 24px;
+    animation: fadeUp .6s .1s ease both;
+  }
+  .hero h1 .accent { color: var(--orange); }
+  .hero p {
+    font-size: 18px; line-height: 1.55; color: var(--on-surface-variant);
+    margin-bottom: 36px; max-width: 520px;
+    animation: fadeUp .6s .2s ease both;
+  }
+  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp .6s .3s ease both; }
+  .hero-visual {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; animation: fadeRight .8s .3s ease both;
+  }
+  .shield-wrapper {
+    position: relative; width: 340px; height: 340px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* SVG Shield */
+  .shield-svg { width: 200px; height: 240px; filter: drop-shadow(0 20px 60px rgba(11,58,99,0.35)); position: relative; z-index: 2; margin-left: 6px; }
+  /* Circuit lines */
+  .circuit-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* Orbiting ring */
+  .orbit {
+    position: absolute; border-radius: 50%; border: 1px solid;
+    animation: spin linear infinite;
+  }
+  .orbit-1 { width: 280px; height: 280px; border-color: rgba(21,101,169,0.2); animation-duration: 18s; }
+  .orbit-2 { width: 340px; height: 340px; border-color: rgba(242,140,40,0.15); animation-duration: 28s; animation-direction: reverse; }
+  .orbit-dot {
+    position: absolute; width: 8px; height: 8px; border-radius: 50%;
+    top: 50%; left: -4px; margin-top: -4px;
+  }
+  .orbit-1 .orbit-dot { background: var(--blue-mid); box-shadow: 0 0 10px var(--blue-mid); }
+  .orbit-2 .orbit-dot { background: var(--orange); box-shadow: 0 0 10px var(--orange); }
+  @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  /* Floating badges */
+  .float-badge {
+    position: absolute; background: white;
+    border-radius: 12px; padding: 10px 16px;
+    box-shadow: var(--shadow-md);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; color: var(--text-dark);
+    animation: float 4s ease-in-out infinite;
+    z-index: 3;
+  }
+  .float-badge .badge-icon { font-size: 20px; }
+  .float-badge-1 { top: 10%; right: -10%; animation-delay: 0s; }
+  .float-badge-2 { bottom: 15%; left: -8%; animation-delay: 1.5s; }
+  .float-badge-3 { top: 60%; right: -12%; animation-delay: 0.8s; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  /* Particles */
+  #particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .particle {
+    position: absolute; border-radius: 50%;
+    background: var(--blue-mid); opacity: 0.12;
+    animation: particleFloat linear infinite;
+  }
+  @keyframes particleFloat {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.12; }
+    90% { opacity: 0.12; }
+    100% { transform: translateY(-100px) scale(1); opacity: 0; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 5%; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Geist Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 14px;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 2px; background: var(--orange); border-radius: 2px; }
+  .section-title {
+    font-family: 'Montserrat', sans-serif; font-weight: 600;
+    font-size: clamp(24px, 3vw, 32px); color: var(--blue-dark);
+    line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 16px;
+  }
+  .section-subtitle { font-size: 18px; color: var(--text-light); line-height: 1.55; max-width: 600px; }
+  .section-header { margin-bottom: 60px; }
+  .section-header.centered { text-align: center; }
+  .section-header.centered .section-subtitle { margin: 0 auto; }
+
+  /* ── CHALLENGES ── */
+  .challenges { background: var(--gray-bg); }
+  .challenges-grid {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px;
+  }
+  .challenge-card {
+    background: white; border-radius: var(--radius);
+    padding: 28px; border: 1px solid var(--outline-variant);
+    display: flex; flex-direction: column; gap: 14px;
+    transition: all .3s;
+    box-shadow: var(--shadow-sm);
+  }
+  .challenge-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--surface-tint); }
+  .challenge-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(11,58,99,0.06), rgba(21,101,169,0.1));
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    transition: transform .3s;
+  }
+  .challenge-card:hover .challenge-icon { transform: scale(1.1); }
+  .challenge-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; color: var(--blue-dark); }
+  .challenge-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+  /* ── SOLUTIONS ── */
+  .solutions-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .solution-card {
+    background: white; border-radius: var(--radius);
+    padding: 32px; border: 1px solid var(--border);
+    position: relative; overflow: hidden;
+    transition: all .35s; box-shadow: var(--shadow-sm);
+    cursor: default;
+  }
+  .solution-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue-mid), var(--orange));
+    transform: scaleX(0); transform-origin: left; transition: transform .35s;
+  }
+  .solution-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  .solution-card:hover::before { transform: scaleX(1); }
+  .solution-number {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: 42px; color: rgba(11,58,99,0.06); position: absolute;
+    top: 16px; right: 20px; line-height: 1;
+  }
+  .solution-icon {
+    width: 54px; height: 54px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 18px;
+    box-shadow: 0 6px 20px rgba(11,58,99,0.25);
+    transition: transform .3s;
+  }
+  .solution-card:hover .solution-icon { transform: rotate(-5deg) scale(1.08); }
+  .solution-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; color: var(--blue-dark); margin-bottom: 8px; }
+  .solution-card p { font-size: 14px; color: var(--text-light); line-height: 1.65; }
+
+  /* ── HOW IT WORKS ── */
+  .how { background: var(--blue-dark); }
+  .how .section-tag { color: var(--orange-light); }
+  .how .section-title { color: white; }
+  .how .section-subtitle { color: rgba(255,255,255,0.6); }
+  .timeline {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    position: relative; gap: 0; margin-top: 20px;
+  }
+  .timeline::before {
+    content: ''; position: absolute; top: 36px; left: 5%; right: 5%; height: 2px;
+    background: linear-gradient(90deg, var(--blue-mid), var(--orange), var(--blue-mid));
+    opacity: 0.4;
+  }
+  .timeline-step {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 0 8px; position: relative;
+    opacity: 0; transform: translateY(20px); transition: all .5s;
+  }
+  .timeline-step.visible { opacity: 1; transform: translateY(0); }
+  .step-num {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-mid), var(--blue-dark));
+    border: 3px solid rgba(242,140,40,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 20px; color: white;
+    margin-bottom: 20px; position: relative; z-index: 1;
+    box-shadow: 0 0 0 8px rgba(21,101,169,0.12), 0 8px 24px rgba(11,58,99,0.4);
+    transition: all .3s;
+  }
+  .timeline-step:hover .step-num {
+    border-color: var(--orange); transform: scale(1.1);
+    box-shadow: 0 0 0 12px rgba(242,140,40,0.1), 0 8px 24px rgba(242,140,40,0.3);
+  }
+  .step-icon { font-size: 24px; margin-bottom: 10px; }
+  .step-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.4; }
+
+  /* ── MARKETS ── */
+  .markets { background: var(--gray-bg); }
+  .markets-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  .market-card {
+    background: white; border-radius: var(--radius);
+    padding: 28px 24px; border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 16px;
+    transition: all .3s; box-shadow: var(--shadow-sm);
+  }
+  .market-card:hover { transform: translateX(6px); border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
+  .market-icon-wrap {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, rgba(11,58,99,0.06), rgba(21,101,169,0.1));
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    transition: transform .3s;
+  }
+  .market-card:hover .market-icon-wrap { transform: scale(1.15); }
+  .market-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; color: var(--blue-dark); }
+  .market-card p { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+
+  /* ── BENEFITS ── */
+  .benefits { background: white; }
+  .benefits-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .benefit-card {
+    background: var(--gray-bg); border-radius: var(--radius);
+    padding: 32px 24px; text-align: center;
+    border: 1px solid var(--border); transition: all .35s;
+    position: relative; overflow: hidden;
+  }
+  .benefit-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    opacity: 0; transition: opacity .35s;
+  }
+  .benefit-card:hover::after { opacity: 1; }
+  .benefit-card:hover .benefit-icon,
+  .benefit-card:hover h3,
+  .benefit-card:hover p { position: relative; z-index: 1; color: white; }
+  .benefit-icon {
+    font-size: 36px; margin-bottom: 16px; display: block;
+    transition: transform .3s; position: relative; z-index: 1;
+  }
+  .benefit-card:hover .benefit-icon { transform: scale(1.2) rotate(-5deg); }
+  .benefit-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--blue-dark); margin-bottom: 8px; position: relative; z-index: 1; transition: color .35s; }
+  .benefit-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; position: relative; z-index: 1; transition: color .35s; }
+
+  /* ── STATS ── */
+  .stats { background: linear-gradient(135deg, var(--blue-dark) 0%, #0D4D8A 100%); }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  }
+  .stat-item {
+    text-align: center; padding: 60px 24px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Montserrat', sans-serif; font-weight: 800;
+    font-size: clamp(42px, 5vw, 64px); color: white; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-num .accent { color: var(--orange); }
+  .stat-label { font-size: 15px; color: rgba(255,255,255,0.65); font-weight: 500; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--gray-bg); }
+  .slider-wrap { position: relative; overflow: hidden; }
+  .slider-track {
+    display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1);
+  }
+  .testimonial-card {
+    min-width: 100%; padding: 0 16px;
+    display: flex; gap: 32px; align-items: flex-start;
+  }
+  .testimonial-content {
+    background: white; border-radius: var(--radius); padding: 40px;
+    border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+    flex: 1;
+  }
+  .quote-mark { font-size: 60px; color: var(--orange); line-height: .8; font-family: Georgia, serif; margin-bottom: 16px; }
+  .testimonial-text { font-size: 17px; color: var(--text-mid); line-height: 1.75; margin-bottom: 28px; font-style: italic; }
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .author-avatar {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: white;
+  }
+  .author-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--blue-dark); }
+  .author-role { font-size: 13px; color: var(--text-light); }
+  .slider-controls { display: flex; justify-content: center; gap: 10px; margin-top: 32px; }
+  .slider-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(11,58,99,0.2); border: none; cursor: pointer;
+    transition: all .3s; padding: 0;
+  }
+  .slider-dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
+  .slider-arrows { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; pointer-events: none; }
+  .slider-arrow {
+    width: 44px; height: 44px; border-radius: 50%; background: white;
+    border: 1px solid var(--border); cursor: pointer; pointer-events: all;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm); transition: all .25s; font-size: 16px;
+    color: var(--blue-dark);
+  }
+  .slider-arrow:hover { background: var(--blue-mid); color: white; border-color: var(--blue-mid); }
+
+  /* ── DIFFERENTIALS ── */
+  .differentials { background: white; }
+  .diff-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .diff-card {
+    background: var(--gray-bg); border-radius: var(--radius);
+    padding: 28px 22px; border: 1px solid var(--border);
+    display: flex; flex-direction: column; gap: 10px;
+    transition: all .3s; position: relative;
+  }
+  .diff-card:hover { background: var(--blue-dark); border-color: var(--blue-dark); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .diff-card:hover .diff-icon,
+  .diff-card:hover h3,
+  .diff-card:hover p { color: white; }
+  .diff-icon { font-size: 28px; transition: color .3s; }
+  .diff-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; color: var(--blue-dark); transition: color .3s; }
+  .diff-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; transition: color .3s; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--blue-dark) 0%, #0A4F8A 60%, #0D3A65 100%);
+    position: relative; overflow: hidden; text-align: center;
+  }
+  .cta-section::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 60% 50%, rgba(242,140,40,0.1) 0%, transparent 60%);
+  }
+  .cta-section .section-tag { color: var(--orange-light); }
+  .cta-section .section-title { color: white; max-width: 700px; margin: 0 auto 20px; }
+  .cta-section .section-subtitle { color: rgba(255,255,255,0.65); margin: 0 auto 40px; }
+  .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+  /* ── FORM ── */
+  .form-section { background: var(--gray-bg); }
+  .form-container {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  }
+  .form-info h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 34px; color: var(--blue-dark); margin-bottom: 16px; }
+  .form-info p { font-size: 16px; color: var(--text-light); line-height: 1.7; margin-bottom: 32px; }
+  .form-promise {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .promise-item { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 500; color: var(--text-mid); }
+  .promise-check {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--orange), #E07820);
+    display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;
+  }
+  .form-card {
+    background: white; border-radius: var(--radius);
+    padding: 40px; box-shadow: var(--shadow-lg); border: 1px solid var(--outline-variant);
+  }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 7px; }
+  .form-group.full { grid-column: 1/-1; }
+  .form-group label { font-family: 'Hanken Grotesk', sans-serif; font-size: 13px; font-weight: 600; color: var(--on-surface); }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--outline-variant); border-radius: var(--radius-sm);
+    font-family: 'Hanken Grotesk', sans-serif; font-size: 16px; color: var(--on-surface);
+    background: var(--surface-container-low); transition: all .25s; outline: none;
+    -webkit-appearance: none;
+  }
+  .form-group textarea { min-height: 132px; resize: vertical; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(150,73,0,0.12);
+  }
+  .form-group .error-msg { font-size: 12px; color: #E53E3E; display: none; }
+  .form-group.invalid input,
+  .form-group.invalid select { border-color: #E53E3E; }
+  .form-group.invalid .error-msg { display: block; }
+  .form-submit {
+    width: 100%; padding: 14px; margin-top: 8px;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px;
+    color: white; background: linear-gradient(135deg, var(--secondary-container), var(--secondary));
+    border: none; border-radius: var(--radius-sm); cursor: pointer;
+    box-shadow: 0 6px 20px rgba(150,73,0,0.25);
+    transition: all .3s; position: relative; overflow: hidden;
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(150,73,0,0.4); }
+  .form-submit::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    opacity: 0; transition: opacity .3s;
+  }
+  .form-submit:hover::before { opacity: 1; }
+
+
+  /* ── PRIVACY CONSENT ── */
+  .privacy-consent { margin-top: 2px; }
+  .privacy-consent-label {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; line-height: 1.5; color: var(--on-surface-variant);
+    cursor: pointer;
+  }
+  .privacy-consent input[type="checkbox"] {
+    width: 18px; height: 18px; min-width: 18px; padding: 0; margin-top: 2px;
+    border: 1.5px solid var(--outline-variant); border-radius: 4px;
+    background: white; box-shadow: none; cursor: pointer;
+    -webkit-appearance: checkbox; appearance: checkbox;
+  }
+  .privacy-consent a { color: var(--secondary); font-weight: 600; }
+  .privacy-consent.invalid .privacy-consent-label { color: var(--error); }
+
+  /* ── FOOTER ── */
+  footer { background: var(--text-dark); color: rgba(255,255,255,0.7); padding: 64px 5% 32px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 64px; margin-bottom: 48px; }
+  .footer-brand .logo-text span:first-child { color: white; }
+  .footer-brand .logo-text span:last-child { color: var(--orange); }
+  .footer-brand .logo-tech { color: rgba(255,255,255,0.45); }
+  .footer-brand .logo-icon { background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)); box-shadow: none; }
+  .footer-slogan { font-size: 15px; color: rgba(255,255,255,0.5); margin-top: 12px; line-height: 1.6; }
+  .footer-social { display: flex; gap: 12px; margin-top: 24px; }
+  .social-btn {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.6); text-decoration: none; font-size: 16px;
+    transition: all .25s;
+  }
+  .social-btn:hover { background: var(--orange); color: white; border-color: var(--orange); transform: translateY(-3px); }
+  .footer-links h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 14px; color: white; margin-bottom: 20px; }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 14px; transition: color .2s; }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity .7s .1s, transform .7s .1s; }
+  .reveal-left.visible { opacity: 1; transform: none; }
+  .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity .7s .1s, transform .7s .1s; }
+  .reveal-right.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .challenges-grid { grid-template-columns: repeat(2, 1fr); }
+    .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .diff-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-brand { grid-column: 1/-1; }
+    .form-container { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    nav, .header-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; padding: 100px 5% 60px; }
+    .hero-visual { display: none; }
+    .challenges-grid,
+    .markets-grid,
+    .form-grid { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; align-items: center; }
+    .timeline::before { display: none; }
+    .timeline-step { max-width: 200px; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    section { padding: 64px 5%; }
+    .challenges-grid,
+    .solutions-grid,
+    .benefits-grid,
+    .markets-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .diff-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Mobile nav */
+  .mobile-nav {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(11,58,99,0.97); padding: 100px 5% 40px;
+    flex-direction: column; gap: 4px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 600;
+    color: white; text-decoration: none; padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: color .2s;
+  }
+  .mobile-nav a:hover { color: var(--orange); }
+  .mobile-close {
+    position: absolute; top: 20px; right: 5%;
+    background: none; border: none; color: white; font-size: 28px; cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <a href="#" class="logo" aria-label="Nexus Flow Tech - Página inicial">
+    <div class="logo-copy">
+      <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
+      <div class="logo-tech">TECH</div>
+    </div>
+    <img src="https://res.cloudinary.com/dbblxiya7/image/upload/v1784137388/AZ9iZMT60eEI-a_G82ltXg-AZ9iZNmWJHK1YQfrYsJckg_gkl3ec.png" alt="Nexus Flow Tech Shield" class="logo-img">
+  </a>
+  <nav>
+    <a href="#desafios">Soluções</a>
+    <a href="#mercados">Mercados</a>
+    <a href="#como-funciona">Como Funciona</a>
+    <a href="#beneficios">Benefícios</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <a href="#contato" class="btn-primary header-cta" onclick="document.getElementById('nome').focus()">Solicitar Diagnóstico Gratuito →</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#desafios" onclick="toggleMenu()">Soluções</a>
+  <a href="#mercados" onclick="toggleMenu()">Mercados</a>
+  <a href="#como-funciona" onclick="toggleMenu()">Como Funciona</a>
+  <a href="#beneficios" onclick="toggleMenu()">Benefícios</a>
+  <a href="sobre.html" onclick="toggleMenu()">Sobre</a>
+  <a href="#contato" onclick="toggleMenu()">Contato</a>
+  <a href="#contato" class="btn-primary" onclick="toggleMenu()" style="margin-top:20px;justify-content:center">Solicitar Diagnóstico</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Transformação Digital Inteligente
+    </div>
+    <h1>Automatize Processos.<br><span class="accent">Conecte Sistemas.</span><br>Tome Decisões Inteligentes.</h1>
+    <p>A Nexus Flow Tech transforma processos manuais em operações inteligentes utilizando Inteligência Artificial, Automação de Processos, Integração de Sistemas e Dashboards em Tempo Real.</p>
+    <div class="hero-cta">
+      <a href="#contato" class="btn-primary btn-orange" onclick="document.getElementById('nome').focus()">Solicitar Diagnóstico →</a>
+      <a href="#como-funciona" class="btn-secondary">Ver Demonstração</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="shield-wrapper">
+      <!-- Orbiting rings -->
+      <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
+      <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
+      <img class="shield-svg" src="https://res.cloudinary.com/dbblxiya7/image/upload/v1784137388/AZ9iZMT60eEI-a_G82ltXg-AZ9iZNmWJHK1YQfrYsJckg_gkl3ec.png" alt="Nexus Flow Tech Shield">
+      <!-- Circuit paths coming out of shield -->
+      <svg class="circuit-canvas" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="170" x2="30" y2="170" stroke="rgba(21,101,169,0.3)" stroke-width="1.5"/>
+        <line x1="30" y1="170" x2="30" y2="140" stroke="rgba(21,101,169,0.3)" stroke-width="1.5"/>
+        <circle cx="30" cy="138" r="4" fill="none" stroke="rgba(21,101,169,0.5)" stroke-width="1.5"/>
+        <line x1="260" y1="170" x2="310" y2="170" stroke="rgba(242,140,40,0.4)" stroke-width="1.5"/>
+        <line x1="310" y1="170" x2="310" y2="200" stroke="rgba(242,140,40,0.4)" stroke-width="1.5"/>
+        <circle cx="310" cy="202" r="4" fill="none" stroke="rgba(242,140,40,0.6)" stroke-width="1.5"/>
+        <line x1="150" y1="82" x2="150" y2="40" stroke="rgba(21,101,169,0.25)" stroke-width="1"/>
+        <circle cx="150" cy="38" r="3" fill="none" stroke="rgba(21,101,169,0.4)" stroke-width="1"/>
+        <line x1="190" y1="255" x2="190" y2="305" stroke="rgba(21,101,169,0.25)" stroke-width="1"/>
+        <circle cx="190" cy="307" r="3" fill="none" stroke="rgba(21,101,169,0.4)" stroke-width="1"/>
+      </svg>
+      <!-- Float badges -->
+      <div class="float-badge float-badge-1"><svg class="badge-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg><div><div style="font-size:11px;color:#64748B">Automação IA</div><div>Ativo 24/7</div></div></div>
+      <div class="float-badge float-badge-2"><svg class="badge-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue-mid)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><div><div style="font-size:11px;color:#64748B">Dashboard</div><div>Tempo Real</div></div></div>
+      <div class="float-badge float-badge-3"><svg class="badge-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><div><div style="font-size:11px;color:#64748B">Eficiência</div><div>+60%</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section class="challenges" id="desafios">
+  <div class="section-header centered reveal">
+    <div class="section-tag">Diagnóstico</div>
+    <h2 class="section-title">Sua empresa ainda enfrenta estes problemas?</h2>
+    <p class="section-subtitle">Identifique os gargalos que estão freando seu crescimento — e descubra como eliminá-los.</p>
+  </div>
+  <div class="challenges-grid">
+    <div class="challenge-card reveal"><div class="challenge-icon">⚙️</div><h3>Processos Manuais</h3><p>Tarefas repetitivas consumindo tempo e gerando erros desnecessários.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">🔄</div><h3>Retrabalho Constante</h3><p>Atividades refeitas por falhas de comunicação ou falta de padronização.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">📉</div><h3>Falta de Indicadores</h3><p>Decisões tomadas no escuro, sem dados confiáveis em tempo real.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">📊</div><h3>Planilhas Espalhadas</h3><p>Informações descentralizadas em arquivos Excel fragmentados.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">🐌</div><h3>Baixa Produtividade</h3><p>Equipes sobrecarregadas com tarefas operacionais de baixo valor.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">🔗</div><h3>Sistemas Isolados</h3><p>ERP, CRM e demais sistemas que não conversam entre si.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">🗂️</div><h3>Dados Descentralizados</h3><p>Informações críticas dispersas em diferentes setores e ferramentas.</p></div>
+    <div class="challenge-card reveal"><div class="challenge-icon">⏰</div><h3>Decisões Lentas</h3><p>Relatórios que chegam tarde demais para fazer diferença estratégica.</p></div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solucoes">
+  <div class="section-header reveal">
+    <div class="section-tag">Soluções</div>
+    <h2 class="section-title">Como ajudamos sua empresa</h2>
+    <p class="section-subtitle">Um portfólio completo de soluções integradas para transformar sua operação.</p>
+  </div>
+  <div class="solutions-grid">
+    <div class="solution-card reveal"><span class="solution-number">01</span><div class="solution-icon">⚡</div><h3>Automação de Processos</h3><p>Eliminamos tarefas manuais e repetitivas com automação inteligente, liberando sua equipe para o que realmente importa.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">🔗</div><span class="solution-number">02</span><h3>Integração de Sistemas</h3><p>Conectamos seus sistemas — ERP, CRM, e-commerce, WMS — em uma arquitetura unificada de dados.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">📊</div><span class="solution-number">03</span><h3>Power BI & Dashboards</h3><p>Dashboards gerenciais com indicadores em tempo real para tomada de decisão baseada em dados confiáveis.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">🛠️</div><span class="solution-number">04</span><h3>Microsoft Power Platform</h3><p>Desenvolvimento de aplicações e fluxos de trabalho com Power Apps, Power Automate e Power BI.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">🌀</div><span class="solution-number">05</span><h3>Workflows Inteligentes</h3><p>Mapeamento e automação de fluxos de trabalho para eliminar gargalos e aumentar a eficiência operacional.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">🤖</div><span class="solution-number">06</span><h3>RPA — Robotic Process</h3><p>Robôs de software que executam tarefas humanas repetitivas com precisão, velocidade e disponibilidade 24/7.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">🧠</div><span class="solution-number">07</span><h3>Inteligência Artificial</h3><p>Modelos de IA aplicados ao seu negócio para previsão de demanda, análise de padrões e decisões preditivas.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">🎯</div><span class="solution-number">08</span><h3>Gestão por Indicadores</h3><p>Estruturação de KPIs estratégicos e operacionais alinhados às metas do negócio.</p></div>
+    <div class="solution-card reveal"><div class="solution-icon">📋</div><span class="solution-number">09</span><h3>Dashboards Gerenciais</h3><p>Painéis executivos personalizados com visão 360° de todas as operações da empresa.</p></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="section-header centered reveal">
+    <div class="section-tag">Metodologia</div>
+    <h2 class="section-title">Como funciona nossa abordagem</h2>
+    <p class="section-subtitle">Um processo estruturado e comprovado para garantir resultados reais.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-step" data-delay="0">
+      <div class="step-num">1</div>
+      <div class="step-icon">🔍</div>
+      <div class="step-label">Diagnóstico</div>
+    </div>
+    <div class="timeline-step" data-delay="100">
+      <div class="step-num">2</div>
+      <div class="step-icon">🗺️</div>
+      <div class="step-label">Mapeamento de Processos</div>
+    </div>
+    <div class="timeline-step" data-delay="200">
+      <div class="step-num">3</div>
+      <div class="step-icon">💻</div>
+      <div class="step-label">Desenvolvimento</div>
+    </div>
+    <div class="timeline-step" data-delay="300">
+      <div class="step-num">4</div>
+      <div class="step-icon">🔌</div>
+      <div class="step-label">Integração</div>
+    </div>
+    <div class="timeline-step" data-delay="400">
+      <div class="step-num">5</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-label">Implantação</div>
+    </div>
+    <div class="timeline-step" data-delay="500">
+      <div class="step-num">6</div>
+      <div class="step-icon">🎓</div>
+      <div class="step-label">Treinamento</div>
+    </div>
+    <div class="timeline-step" data-delay="600">
+      <div class="step-num">7</div>
+      <div class="step-icon">🛡️</div>
+      <div class="step-label">Suporte Contínuo</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="markets" id="mercados">
+  <div class="section-header reveal">
+    <div class="section-tag">Mercados</div>
+    <h2 class="section-title">Setores que atendemos</h2>
+    <p class="section-subtitle">Expertise setorial para entregar soluções que realmente funcionam na sua realidade.</p>
+  </div>
+  <div class="markets-grid">
+    <div class="market-card reveal"><div class="market-icon-wrap">🏭</div><div><h3>Indústria</h3><p>Automação de chão de fábrica e gestão de produção</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">🌾</div><div><h3>Agronegócio</h3><p>Rastreabilidade, colheita e gestão de estoque rural</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">🚛</div><div><h3>Logística</h3><p>Roteirização, WMS e controle de frota integrado</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">🏗️</div><div><h3>Construção Civil</h3><p>Gestão de obras, insumos e cronograma digital</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">📦</div><div><h3>Distribuição</h3><p>Pedidos, estoque e entrega em fluxo automatizado</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">🏥</div><div><h3>Saúde</h3><p>Prontuários, agendamentos e indicadores hospitalares</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">💰</div><div><h3>Financeiro</h3><p>Conciliação, compliance e relatórios automatizados</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">🛒</div><div><h3>Comércio</h3><p>Omnichannel, CRM e gestão de ponto de venda</p></div></div>
+    <div class="market-card reveal"><div class="market-icon-wrap">🤝</div><div><h3>Prestação de Serviços</h3><p>OS digital, atendimento e controle de SLA</p></div></div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="benefits" id="beneficios">
+  <div class="section-header centered reveal">
+    <div class="section-tag">Benefícios</div>
+    <h2 class="section-title">O que sua empresa ganha</h2>
+    <p class="section-subtitle">Resultados mensuráveis desde os primeiros meses de implementação.</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal"><span class="benefit-icon">💸</span><h3>Redução de Custos</h3><p>Menos desperdício, menos retrabalho, mais resultado financeiro.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">♻️</span><h3>Zero Retrabalho</h3><p>Processos padronizados que eliminam erros na origem.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">⚡</span><h3>Mais Produtividade</h3><p>Equipes focadas em atividades estratégicas de alto valor.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">🎛️</span><h3>Mais Controle</h3><p>Visibilidade completa sobre todas as operações em tempo real.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">📈</span><h3>KPIs em Tempo Real</h3><p>Indicadores atualizados automaticamente para decisões rápidas.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">🏆</span><h3>Maior Eficiência</h3><p>Processos otimizados que entregam mais com menos recursos.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">🧠</span><h3>Decisões Inteligentes</h3><p>IA e dados para decisões baseadas em evidências, não intuição.</p></div>
+    <div class="benefit-card reveal"><span class="benefit-icon">📐</span><h3>Escalabilidade</h3><p>Arquitetura preparada para crescer junto com o seu negócio.</p></div>
+  </div>
+</section>
+
+<!-- DIFFERENTIALS -->
+<section class="differentials">
+  <div class="section-header centered reveal">
+    <div class="section-tag">Diferenciais</div>
+    <h2 class="section-title">Por que escolher a Nexus Flow Tech</h2>
+    <p class="section-subtitle">O que nos torna a parceira certa para sua transformação digital.</p>
+  </div>
+  <div class="diff-grid">
+    <div class="diff-card reveal"><div class="diff-icon">🎯</div><h3>Especialistas em Processos</h3><p>Expertise profunda em mapeamento e otimização de fluxos operacionais.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">📌</div><h3>Especialistas em Gestão</h3><p>Visão estratégica integrada à execução técnica.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">🔧</div><h3>Projetos Personalizados</h3><p>Cada solução é desenhada sob medida para o seu contexto.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">🤖</div><h3>IA Aplicada ao Negócio</h3><p>Inteligência artificial com foco em resultados práticos e mensuráveis.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">🛡️</div><h3>Segurança da Informação</h3><p>Arquitetura segura e compliance com LGPD e normas do setor.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">📐</div><h3>Arquitetura Escalável</h3><p>Soluções que crescem conforme a demanda do seu negócio.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">🔌</div><h3>Integrações Inteligentes</h3><p>Conectamos qualquer sistema via API, webhook, RPA ou middleware.</p></div>
+    <div class="diff-card reveal"><div class="diff-icon">💼</div><h3>Consultoria Estratégica</h3><p>Muito além da tecnologia — parceria para a transformação do negócio.</p></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-item"><div class="stat-num" data-target="95"><span class="counter">0</span><span class="accent">%</span></div><div class="stat-label">Clientes Satisfeitos</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="40"><span class="counter">0</span><span class="accent">%</span></div><div class="stat-label">Redução de Tempo Operacional</div></div>
+    <div class="stat-item"><div class="stat-num" data-target="60"><span class="counter">0</span><span class="accent">%</span></div><div class="stat-label">Redução de Retrabalho</div></div>
+    <div class="stat-item"><div class="stat-num"><span class="accent">24/7</span></div><div class="stat-label">Monitoramento Contínuo</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header centered reveal">
+    <div class="section-tag">Depoimentos</div>
+    <h2 class="section-title">O que nossos clientes dizem</h2>
+  </div>
+  <div class="slider-wrap reveal">
+    <div class="slider-track" id="sliderTrack">
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">A Nexus Flow Tech transformou completamente nossa operação industrial. Reduzimos 45% do tempo de processamento de pedidos e eliminamos praticamente todo o retrabalho que tínhamos antes. O ROI superou nossas expectativas já no terceiro mês.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RC</div>
+            <div><div class="author-name">Ricardo Carvalho</div><div class="author-role">Diretor de Operações — Indústria Metalúrgica</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">Integramos nosso ERP, WMS e plataforma de e-commerce em semanas. Hoje temos visibilidade em tempo real de todo o estoque e as expedições saem com zero erros. A equipe da Nexus Flow Tech é extremamente competente e comprometida.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AF</div>
+            <div><div class="author-name">Ana Figueiredo</div><div class="author-role">CEO — Distribuidora Regional</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-mark">"</div>
+          <p class="testimonial-text">Os dashboards do Power BI que implementaram nos deram uma clareza que nunca tivemos antes. Cada gestor tem seus KPIs na tela toda manhã. Tomamos decisões em horas, não em semanas. Isso mudou o jogo para a gente.</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MS</div>
+            <div><div class="author-name">Marcos Souza</div><div class="author-role">CFO — Rede de Clínicas Médicas</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-arrows">
+      <button class="slider-arrow" onclick="moveSlider(-1)">←</button>
+      <button class="slider-arrow" onclick="moveSlider(1)">→</button>
+    </div>
+  </div>
+  <div class="slider-controls">
+    <button class="slider-dot active" onclick="goToSlide(0)"></button>
+    <button class="slider-dot" onclick="goToSlide(1)"></button>
+    <button class="slider-dot" onclick="goToSlide(2)"></button>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-tag" style="justify-content:center">Próximo Passo</div>
+  <h2 class="section-title">Sua empresa está pronta para o próximo nível?</h2>
+  <p class="section-subtitle">Descubra como automatizar processos, integrar sistemas e aumentar a produtividade com a Nexus Flow Tech.</p>
+  <div class="cta-buttons">
+    <a href="#contato" class="btn-primary btn-orange" style="font-size:16px;padding:14px 28px">Solicitar Diagnóstico Gratuito →</a>
+    <a href="#como-funciona" class="btn-secondary" style="color:white;border-color:rgba(255,255,255,0.4);font-size:16px;padding:14px 28px">Ver Como Funciona</a>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="contato">
+  <div class="form-container">
+    <div class="form-info reveal-left">
+      <div class="section-tag">Contato</div>
+      <h2>Vamos transformar sua operação?</h2>
+      <p>Agende um diagnóstico gratuito com nossos especialistas e descubra exatamente onde sua empresa está perdendo tempo e dinheiro — e como resolver.</p>
+      <div class="form-promise">
+        <div class="promise-item"><div class="promise-check">✓</div>Diagnóstico 100% gratuito e sem compromisso</div>
+        <div class="promise-item"><div class="promise-check">✓</div>Resposta em até 24 horas úteis</div>
+        <div class="promise-item"><div class="promise-check">✓</div>Especialistas com experiência no seu setor</div>
+        <div class="promise-item"><div class="promise-check">✓</div>Proposta personalizada para sua realidade</div>
+      </div>
+    </div>
+    <div class="form-card reveal-right">
+      <form id="diagnosticForm" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nome *</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome completo">
+            <span class="error-msg">Informe seu nome</span>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com.br">
+            <span class="error-msg">Email inválido</span>
+          </div>
+          <div class="form-group full">
+            <label>Empresa *</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa">
+            <span class="error-msg">Informe a empresa</span>
+          </div>
+          <div class="form-group full">
+            <label>O que você quer automatizar? *</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva o processo, sistema ou dor principal"></textarea>
+            <span class="error-msg">Descreva sua necessidade</span>
+          </div>
+        </div>
+        <div class="form-group full privacy-consent">
+          <label class="privacy-consent-label" for="privacyConsent">
+            <input type="checkbox" id="privacyConsent" name="privacyConsent">
+            <span>Li e estou ciente da <a href="politica-de-privacidade.html" target="_blank" rel="noopener noreferrer">Política de Privacidade</a> e compreendo como meus dados serão utilizados para responder à solicitação.</span>
+          </label>
+          <span class="error-msg">Confirme que leu a Política de Privacidade</span>
+        </div>
+        <button type="submit" class="form-submit">Solicitar Diagnóstico Gratuito</button>
+        <p style="font-size:12px;color:#73777e;text-align:center;margin-top:12px">Envio direto para <a href="mailto:marcel@nexusflowtech.com.br" style="color:var(--secondary);text-decoration:none">marcel@nexusflowtech.com.br</a></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="margin-bottom:12px">
+        <img src="https://res.cloudinary.com/dbblxiya7/image/upload/v1784137388/AZ9iZMT60eEI-a_G82ltXg-AZ9iZNmWJHK1YQfrYsJckg_gkl3ec.png" alt="Nexus Flow Tech Shield" class="logo-img">
+        <div class="logo-copy">
+          <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
+          <div class="logo-tech">TECH</div>
+        </div>
+      </div>
+
+      <p class="footer-slogan">Dados em Fluxo.<br><span style="color:var(--orange)">Decisões em Movimento.</span></p>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/nexus-flow-tech/posts/?feedView=all" class="social-btn" title="LinkedIn" aria-label="LinkedIn da Nexus Flow Tech" target="_blank" rel="noopener noreferrer">in</a>
+        <a href="https://wa.me/5511989601000" class="social-btn" title="WhatsApp" aria-label="WhatsApp da Nexus Flow Tech: (11) 98960-1000" target="_blank" rel="noopener noreferrer">W</a>
+        <a href="mailto:marcel@nexusflowtech.com.br" class="social-btn" title="E-mail" aria-label="Enviar e-mail para marcel@nexusflowtech.com.br">@</a>
+      </div>
+    </div>
+    <div class="footer-links">
+      <h4>Navegação</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#desafios">Soluções</a></li>
+        <li><a href="#mercados">Mercados</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="sobre.html">Sobre a Nexus</a></li>
+        <li><a href="politica-de-privacidade.html">Política de Privacidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Soluções</h4>
+      <ul>
+        <li><a href="#solucoes">Automação RPA</a></li>
+        <li><a href="#solucoes">Power BI</a></li>
+        <li><a href="#solucoes">Power Platform</a></li>
+        <li><a href="#solucoes">Integração de Sistemas</a></li>
+        <li><a href="#solucoes">Inteligência Artificial</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Nexus Flow Tech. Todos os direitos reservados.</span>
+    <span style="color:rgba(255,255,255,0.3)">Dados em Fluxo. Decisões em Movimento.</span>
+  </div>
+</footer>
+
+<script>
+  // ── Header scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ── Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  // ── Particles
+  (function() {
+    const c = document.getElementById('particles');
+    for (let i = 0; i < 18; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 6 + 2;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        left:${Math.random()*100}%;
+        animation-duration:${Math.random()*15+10}s;
+        animation-delay:${Math.random()*15}s;
+        background:${Math.random()>.5 ? '#1565A9' : '#F28C28'};
+      `;
+      c.appendChild(p);
+    }
+  })();
+
+  // ── Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .timeline-step');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const delay = e.target.dataset.delay || 0;
+        setTimeout(() => e.target.classList.add('visible'), +delay);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── Counters
+  const statItems = document.querySelectorAll('.stat-item[data-target]');
+  let counted = false;
+  const statsObserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      document.querySelectorAll('[data-target]').forEach(el => {
+        const target = +el.dataset.target;
+        const counter = el.querySelector('.counter');
+        if (!counter) return;
+        let start = 0;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          start = Math.min(start + step, target);
+          counter.textContent = start;
+          if (start >= target) clearInterval(timer);
+        }, 30);
+      });
+    }
+  }, { threshold: 0.4 });
+  document.querySelector('.stats') && statsObserver.observe(document.querySelector('.stats'));
+
+  // ── Slider
+  let currentSlide = 0;
+  const totalSlides = 3;
+  function updateSlider() {
+    document.getElementById('sliderTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.slider-dot').forEach((d,i) => d.classList.toggle('active', i===currentSlide));
+  }
+  function moveSlider(dir) {
+    currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+    updateSlider();
+  }
+  function goToSlide(i) { currentSlide = i; updateSlider(); }
+  setInterval(() => moveSlider(1), 6000);
+
+  // ── Form mailto
+  document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const nome = document.getElementById('nome');
+    const email = document.getElementById('email');
+    const empresa = document.getElementById('empresa');
+    const mensagem = document.getElementById('mensagem');
+    const privacyConsent = document.getElementById('privacyConsent');
+
+    const fields = [
+      { el: nome, ok: nome.value.trim().length > 1 },
+      { el: email, ok: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value) },
+      { el: empresa, ok: empresa.value.trim().length > 1 },
+      { el: mensagem, ok: mensagem.value.trim().length > 5 },
+      { el: privacyConsent, ok: privacyConsent.checked },
+    ];
+
+    let valid = true;
+    fields.forEach(({ el, ok }) => {
+      const grp = el.closest('.form-group');
+      grp.classList.toggle('invalid', !ok);
+      if (!ok) valid = false;
+    });
+
+    if (!valid) return;
+
+    const subject = encodeURIComponent(`Diagnóstico gratuito - ${empresa.value.trim()}`);
+    const body = encodeURIComponent(
+`Nome: ${nome.value.trim()}
+Email: ${email.value.trim()}
+Empresa: ${empresa.value.trim()}
+
+Mensagem:
+${mensagem.value.trim()}`);
+
+    window.location.href = `mailto:marcel@nexusflowtech.com.br?subject=${subject}&body=${body}`;
+  });
+
+  // Simple form only; no phone mask needed.
+</script>
+</body>
+</html>
