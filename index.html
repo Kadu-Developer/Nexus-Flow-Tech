@@ -3,9 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexus Flow Tech | Automação Inteligente de Processos</title>
-<meta name="description" content="Especialistas em Automação Empresarial, Inteligência Artificial, Integração de Sistemas, Dashboards Power BI, Power Platform, Workflows Inteligentes e Transformação Digital.">
+<title>Automação de Processos, IA e Integração de Sistemas | Nexus Flow Tech</title>
+  <link rel="canonical" href="https://nexusflowtech.com.br/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Nexus Flow Tech">
+  <meta property="og:title" content="Automação de Processos, IA e Integração de Sistemas | Nexus Flow Tech">
+  <meta property="og:description" content="Transformamos processos empresariais com inteligência artificial, automação, integrações e dados.">
+  <meta property="og:url" content="https://nexusflowtech.com.br/">
+  <meta property="og:image" content="https://nexusflowtech.com.br/assets/og-nexus-flow-tech.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Automação de Processos, IA e Integração de Sistemas | Nexus Flow Tech">
+  <meta name="twitter:description" content="Automação, IA, integração de sistemas e dados para operações de alta performance.">
+  <meta name="twitter:image" content="https://nexusflowtech.com.br/assets/og-nexus-flow-tech.jpg">
+  <meta name="theme-color" content="#001629">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+<meta name="description" content="Automatizamos processos, integramos sistemas e aplicamos inteligência artificial para reduzir custos, eliminar retrabalho e aumentar a eficiência empresarial.">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://nexusflowtech.com.br/#organization",
+      "name": "Nexus Flow Tech",
+      "url": "https://nexusflowtech.com.br/",
+      "logo": "https://nexusflowtech.com.br/assets/nexus-flow-tech-logo.png",
+      "email": "marcel@nexusflowtech.com.br",
+      "telephone": "+55 11 98960-1000",
+      "sameAs": ["https://www.linkedin.com/company/nexus-flow-tech/"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nexusflowtech.com.br/#website",
+      "url": "https://nexusflowtech.com.br/",
+      "name": "Nexus Flow Tech",
+      "publisher": {"@id": "https://nexusflowtech.com.br/#organization"},
+      "inLanguage": "pt-BR"
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --primary: #001629;
@@ -656,6 +700,51 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   }
+
+  /* WhatsApp flutuante e otimizações de toque */
+  a, button { -webkit-tap-highlight-color: transparent; }
+  button, .btn-primary, .btn-secondary, .btn-orange, .btn, .form-submit, .slider-arrow, .slider-dot, .hamburger, .mobile-close, .social-btn, .social {
+    touch-action: manipulation;
+  }
+  section[id] { scroll-margin-top: 88px; }
+  body.menu-open { overflow: hidden; }
+  .whatsapp-float {
+    position: fixed; right: 22px; bottom: calc(22px + env(safe-area-inset-bottom)); z-index: 1700;
+    min-height: 56px; padding: 0 20px 0 16px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    color: #fff; background: #1f9d55; text-decoration: none;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700;
+    box-shadow: 0 12px 32px rgba(0,0,0,.24); transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .whatsapp-float:hover { transform: translateY(-3px); background: #178646; box-shadow: 0 16px 38px rgba(0,0,0,.3); }
+  .whatsapp-float svg { width: 26px; height: 26px; flex: 0 0 auto; }
+  @media (max-width: 768px) {
+    .whatsapp-float { width: 58px; height: 58px; min-height: 58px; padding: 0; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); }
+    .whatsapp-float span { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  }
+
+  .form-status { display:none; margin-top:14px; padding:12px 14px; border-radius:10px; font-size:14px; line-height:1.5; }
+  .form-status.show { display:block; }
+  .form-status.success { color:#0f5132; background:#d1e7dd; border:1px solid #badbcc; }
+  .form-status.error { color:#842029; background:#f8d7da; border:1px solid #f5c2c7; }
+  .form-submit:disabled { cursor:not-allowed; opacity:.68; transform:none; box-shadow:none; }
+  .form-honeypot { position:absolute!important; left:-9999px!important; width:1px!important; height:1px!important; opacity:0!important; pointer-events:none!important; }
+  @media (max-width: 768px) {
+    header { height:64px; padding:0 4%; }
+    header .logo-img { height:32px; max-height:32px; }
+    .hamburger { width:44px; height:44px; align-items:center; justify-content:center; border:0; background:transparent; border-radius:10px; position:relative; z-index:2100; }
+    .mobile-nav { z-index:2000; padding:82px 6% 32px; overflow-y:auto; }
+    .mobile-close { z-index:2101; width:44px; height:44px; display:flex; align-items:center; justify-content:center; top:10px; right:4%; }
+    .mobile-nav a { min-height:52px; display:flex; align-items:center; }
+    .mobile-nav .btn-primary { margin-top:18px!important; min-height:52px; border-bottom:0; }
+    .hero-cta, .cta-buttons { flex-direction:column; width:100%; }
+    .hero-cta a, .cta-buttons a { width:100%; min-height:50px; justify-content:center; }
+    .btn-primary, .btn-secondary, .btn-orange { min-height:48px; }
+    .form-card { padding:26px 18px; }
+    .form-submit { min-height:52px; font-size:15px; }
+    .footer-bottom { flex-direction:column; align-items:flex-start; gap:8px; }
+  }
+
 </style>
 </head>
 <body>
@@ -667,7 +756,7 @@
       <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
       <div class="logo-tech">TECH</div>
     </div>
-    <img src="https://res.cloudinary.com/dbblxiya7/image/upload/v1784137388/AZ9iZMT60eEI-a_G82ltXg-AZ9iZNmWJHK1YQfrYsJckg_gkl3ec.png" alt="Nexus Flow Tech Shield" class="logo-img">
+    <img src="assets/nexus-flow-tech-logo.png" alt="Nexus Flow Tech Shield" class="logo-img">
   </a>
   <nav>
     <a href="#desafios">Soluções</a>
@@ -677,22 +766,22 @@
     <a href="sobre.html">Sobre</a>
     <a href="#contato">Contato</a>
   </nav>
-  <a href="#contato" class="btn-primary header-cta" onclick="document.getElementById('nome').focus()">Solicitar Diagnóstico Gratuito →</a>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+  <a href="#contato" class="btn-primary header-cta">Solicitar Diagnóstico Gratuito →</a>
+  <button type="button" class="hamburger" id="hamburger" aria-label="Abrir menu" aria-controls="mobileNav" aria-expanded="false">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </header>
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav">
-  <button class="mobile-close" onclick="toggleMenu()">✕</button>
-  <a href="#desafios" onclick="toggleMenu()">Soluções</a>
-  <a href="#mercados" onclick="toggleMenu()">Mercados</a>
-  <a href="#como-funciona" onclick="toggleMenu()">Como Funciona</a>
-  <a href="#beneficios" onclick="toggleMenu()">Benefícios</a>
-  <a href="sobre.html" onclick="toggleMenu()">Sobre</a>
-  <a href="#contato" onclick="toggleMenu()">Contato</a>
-  <a href="#contato" class="btn-primary" onclick="toggleMenu()" style="margin-top:20px;justify-content:center">Solicitar Diagnóstico</a>
+  <button type="button" class="mobile-close" id="mobileClose" aria-label="Fechar menu">✕</button>
+  <a href="#desafios">Soluções</a>
+  <a href="#mercados">Mercados</a>
+  <a href="#como-funciona">Como Funciona</a>
+  <a href="#beneficios">Benefícios</a>
+  <a href="sobre.html">Sobre</a>
+  <a href="#contato">Contato</a>
+  <a href="#contato" class="btn-primary" style="margin-top:20px;justify-content:center">Solicitar Diagnóstico</a>
 </div>
 
 <!-- HERO -->
@@ -706,7 +795,7 @@
     <h1>Automatize Processos.<br><span class="accent">Conecte Sistemas.</span><br>Tome Decisões Inteligentes.</h1>
     <p>A Nexus Flow Tech transforma processos manuais em operações inteligentes utilizando Inteligência Artificial, Automação de Processos, Integração de Sistemas e Dashboards em Tempo Real.</p>
     <div class="hero-cta">
-      <a href="#contato" class="btn-primary btn-orange" onclick="document.getElementById('nome').focus()">Solicitar Diagnóstico →</a>
+      <a href="#contato" class="btn-primary btn-orange">Solicitar Diagnóstico →</a>
       <a href="#como-funciona" class="btn-secondary">Ver Demonstração</a>
     </div>
   </div>
@@ -715,7 +804,7 @@
       <!-- Orbiting rings -->
       <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
       <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
-      <img class="shield-svg" src="https://res.cloudinary.com/dbblxiya7/image/upload/v1784137388/AZ9iZMT60eEI-a_G82ltXg-AZ9iZNmWJHK1YQfrYsJckg_gkl3ec.png" alt="Nexus Flow Tech Shield">
+      <img class="shield-svg" src="assets/nexus-flow-tech-logo.png" alt="Nexus Flow Tech Shield">
       <!-- Circuit paths coming out of shield -->
       <svg class="circuit-canvas" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg">
         <line x1="80" y1="170" x2="30" y2="170" stroke="rgba(21,101,169,0.3)" stroke-width="1.5"/>
@@ -930,14 +1019,14 @@
       </div>
     </div>
     <div class="slider-arrows">
-      <button class="slider-arrow" onclick="moveSlider(-1)">←</button>
-      <button class="slider-arrow" onclick="moveSlider(1)">→</button>
+      <button type="button" class="slider-arrow" onclick="moveSlider(-1)">←</button>
+      <button type="button" class="slider-arrow" onclick="moveSlider(1)">→</button>
     </div>
   </div>
   <div class="slider-controls">
-    <button class="slider-dot active" onclick="goToSlide(0)"></button>
-    <button class="slider-dot" onclick="goToSlide(1)"></button>
-    <button class="slider-dot" onclick="goToSlide(2)"></button>
+    <button type="button" class="slider-dot active" onclick="goToSlide(0)"></button>
+    <button type="button" class="slider-dot" onclick="goToSlide(1)"></button>
+    <button type="button" class="slider-dot" onclick="goToSlide(2)"></button>
   </div>
 </section>
 
@@ -967,26 +1056,29 @@
       </div>
     </div>
     <div class="form-card reveal-right">
-      <form id="diagnosticForm" novalidate>
+      <form id="diagnosticForm" action="https://formsubmit.co/marcel@nexusflowtech.com.br" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Novo diagnóstico pelo site — Nexus Flow Tech">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-grid">
           <div class="form-group">
-            <label>Nome *</label>
-            <input type="text" id="nome" name="nome" placeholder="Seu nome completo">
+            <label for="nome">Nome *</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" required>
             <span class="error-msg">Informe seu nome</span>
           </div>
           <div class="form-group">
-            <label>Email *</label>
-            <input type="email" id="email" name="email" placeholder="seu@email.com.br">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com.br" autocomplete="email" inputmode="email" required>
             <span class="error-msg">Email inválido</span>
           </div>
           <div class="form-group full">
-            <label>Empresa *</label>
-            <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa">
+            <label for="empresa">Empresa *</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa" autocomplete="organization" required>
             <span class="error-msg">Informe a empresa</span>
           </div>
           <div class="form-group full">
-            <label>O que você quer automatizar? *</label>
-            <textarea id="mensagem" name="mensagem" placeholder="Descreva o processo, sistema ou dor principal"></textarea>
+            <label for="mensagem">O que você quer automatizar? *</label>
+            <textarea id="mensagem" name="mensagem" placeholder="Descreva o processo, sistema ou dor principal" required></textarea>
             <span class="error-msg">Descreva sua necessidade</span>
           </div>
         </div>
@@ -997,8 +1089,9 @@
           </label>
           <span class="error-msg">Confirme que leu a Política de Privacidade</span>
         </div>
-        <button type="submit" class="form-submit">Solicitar Diagnóstico Gratuito</button>
-        <p style="font-size:12px;color:#73777e;text-align:center;margin-top:12px">Envio direto para <a href="mailto:marcel@nexusflowtech.com.br" style="color:var(--secondary);text-decoration:none">marcel@nexusflowtech.com.br</a></p>
+        <button type="submit" class="form-submit" id="formSubmitButton">Solicitar Diagnóstico Gratuito</button>
+        <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+        <p style="font-size:12px;color:#73777e;text-align:center;margin-top:12px">O formulário é enviado diretamente à equipe, sem abrir outro aplicativo.</p>
       </form>
     </div>
   </div>
@@ -1009,7 +1102,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="logo" style="margin-bottom:12px">
-        <img src="https://res.cloudinary.com/dbblxiya7/image/upload/v1784137388/AZ9iZMT60eEI-a_G82ltXg-AZ9iZNmWJHK1YQfrYsJckg_gkl3ec.png" alt="Nexus Flow Tech Shield" class="logo-img">
+        <img src="assets/nexus-flow-tech-logo.png" alt="Nexus Flow Tech Shield" class="logo-img">
         <div class="logo-copy">
           <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
           <div class="logo-tech">TECH</div>
@@ -1057,11 +1150,6 @@
   window.addEventListener('scroll', () => {
     document.getElementById('header').classList.toggle('scrolled', window.scrollY > 40);
   });
-
-  // ── Mobile menu
-  function toggleMenu() {
-    document.getElementById('mobileNav').classList.toggle('open');
-  }
 
   // ── Particles
   (function() {
@@ -1129,8 +1217,36 @@
   function goToSlide(i) { currentSlide = i; updateSlider(); }
   setInterval(() => moveSlider(1), 6000);
 
-  // ── Form mailto
-  document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
+  // ── Menu mobile acessível
+  const mobileNav = document.getElementById('mobileNav');
+  const menuButton = document.getElementById('hamburger');
+  const mobileClose = document.getElementById('mobileClose');
+
+  function setMenu(open) {
+    mobileNav.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  }
+  function toggleMenu() { setMenu(!mobileNav.classList.contains('open')); }
+  menuButton.addEventListener('click', toggleMenu);
+  mobileClose.addEventListener('click', () => setMenu(false));
+  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) setMenu(false); });
+
+  // ── Envio direto do formulário por HTTPS, sem abrir aplicativo de e-mail
+  const diagnosticForm = document.getElementById('diagnosticForm');
+  const formStatus = document.getElementById('formStatus');
+  const submitButton = document.getElementById('formSubmitButton');
+
+  function showFormStatus(message, type) {
+    formStatus.textContent = message;
+    formStatus.className = `form-status show ${type}`;
+    formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  diagnosticForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     const nome = document.getElementById('nome');
     const email = document.getElementById('email');
@@ -1140,7 +1256,7 @@
 
     const fields = [
       { el: nome, ok: nome.value.trim().length > 1 },
-      { el: email, ok: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value) },
+      { el: email, ok: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()) },
       { el: empresa, ok: empresa.value.trim().length > 1 },
       { el: mensagem, ok: mensagem.value.trim().length > 5 },
       { el: privacyConsent, ok: privacyConsent.checked },
@@ -1148,26 +1264,60 @@
 
     let valid = true;
     fields.forEach(({ el, ok }) => {
-      const grp = el.closest('.form-group');
-      grp.classList.toggle('invalid', !ok);
+      const group = el.closest('.form-group');
+      if (group) group.classList.toggle('invalid', !ok);
+      el.setAttribute('aria-invalid', String(!ok));
       if (!ok) valid = false;
     });
 
-    if (!valid) return;
+    if (!valid) {
+      const firstInvalid = fields.find(field => !field.ok)?.el;
+      firstInvalid?.focus();
+      showFormStatus('Revise os campos destacados antes de enviar.', 'error');
+      return;
+    }
 
-    const subject = encodeURIComponent(`Diagnóstico gratuito - ${empresa.value.trim()}`);
-    const body = encodeURIComponent(
-`Nome: ${nome.value.trim()}
-Email: ${email.value.trim()}
-Empresa: ${empresa.value.trim()}
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+    formStatus.className = 'form-status';
 
-Mensagem:
-${mensagem.value.trim()}`);
+    const payload = {
+      nome: nome.value.trim(),
+      email: email.value.trim(),
+      _replyto: email.value.trim(),
+      empresa: empresa.value.trim(),
+      mensagem: mensagem.value.trim(),
+      consentimento_privacidade: 'Confirmado',
+      origem: window.location.href,
+      _subject: `Novo diagnóstico — ${empresa.value.trim()}`,
+      _template: 'table'
+    };
 
-    window.location.href = `mailto:marcel@nexusflowtech.com.br?subject=${subject}&body=${body}`;
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/marcel@nexusflowtech.com.br', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false) throw new Error(result.message || 'Falha no envio');
+
+      diagnosticForm.reset();
+      diagnosticForm.querySelectorAll('.form-group.invalid').forEach(group => group.classList.remove('invalid'));
+      showFormStatus('Solicitação enviada. Nossa equipe responderá em até 24 horas úteis.', 'success');
+    } catch (error) {
+      console.error('Erro no envio do formulário:', error);
+      showFormStatus('Não foi possível enviar agora. Tente novamente ou fale conosco pelo WhatsApp.', 'error');
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = 'Solicitar Diagnóstico Gratuito';
+    }
   });
-
-  // Simple form only; no phone mask needed.
 </script>
+
+<a class="whatsapp-float" href="https://wa.me/5511989601000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Nexus%20Flow%20Tech%20e%20gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20de%20automa%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" aria-label="Falar com um especialista da Nexus Flow Tech pelo WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.21c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.57-1.38-.78-1.89-.21-.5-.42-.43-.57-.44h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09 0 1.23.9 2.42 1.02 2.59.13.17 1.76 2.69 4.27 3.77.6.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.1-.23-.17-.48-.29ZM16.04 3C8.87 3 3.04 8.83 3.04 16c0 2.29.6 4.53 1.73 6.5L3 29l6.68-1.75A12.94 12.94 0 0 0 16.04 29C23.21 29 29.04 23.17 29.04 16S23.21 3 16.04 3Zm0 23.63c-2.08 0-4.11-.56-5.88-1.61l-.42-.25-3.96 1.04 1.06-3.86-.27-.43A10.58 10.58 0 0 1 5.41 16c0-5.86 4.77-10.63 10.63-10.63S26.67 10.14 26.67 16s-4.77 10.63-10.63 10.63Z"/></svg>
+  <span>Fale com um especialista</span>
+</a>
 </body>
 </html>
