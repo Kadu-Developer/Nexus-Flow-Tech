@@ -1,0 +1,48 @@
+RELATÓRIO DE QA — NEXUS FLOW TECH
+
+Escopo desta verificação: análise estrutural dos arquivos HTML, links internos, assets locais, SEO básico e integração das novas imagens de segmentos.
+
+1. Arquivos verificados
+- index.html: OK
+- sobre.html: OK
+- politica-de-privacidade.html: OK
+- obrigado.html: OK
+- robots.txt: OK
+- sitemap.xml: OK
+- site.webmanifest: OK
+
+2. Resultado por página
+- index.html: title=True, meta description=True, canonical=True, Open Graph=True, links locais ok=True, âncoras ok=True, imagens=12, formulários=1
+- sobre.html: title=True, meta description=True, canonical=True, Open Graph=True, links locais ok=True, âncoras ok=True, imagens=5, formulários=0
+- politica-de-privacidade.html: title=True, meta description=True, canonical=True, Open Graph=True, links locais ok=True, âncoras ok=True, imagens=0, formulários=0
+- obrigado.html: title=True, meta description=True, canonical=True, Open Graph=True, links locais ok=True, âncoras ok=True, imagens=1, formulários=0
+
+3. Integração das novas imagens de segmentos
+- assets/segmento-industria.png: OK
+- assets/segmento-agronegocio.png: OK
+- assets/segmento-logistica.png: OK
+- assets/segmento-construcao-civil.png: OK
+- assets/segmento-distribuicao.png: OK
+- assets/segmento-saude.png: OK
+- assets/segmento-financeiro.png: OK
+- assets/segmento-comercio.png: OK
+- assets/segmento-prestacao-servicos.png: OK
+
+4. Itens funcionais conferidos no código
+- Formulário aponta para FormSubmit: OK
+- Botão flutuante do WhatsApp presente: OK
+- Link do LinkedIn presente: OK
+- Link de e-mail presente: OK
+- Menu mobile presente: OK
+- Seção Mercados com cards em imagem presente: OK
+
+5. Observações
+- Nenhum erro estrutural crítico foi encontrado nesta verificação estática.
+- Nenhum aviso adicional relevante.
+
+6. Limitações desta análise
+- Esta auditoria foi estática, baseada no código final do site.
+- O envio real do formulário depende da publicação do site e da ativação/entrega do FormSubmit.
+- Testes de clique reais em celular, desempenho, renderização e rede devem ser confirmados após publicação.
+
+Status final: APROVADO PARA PUBLICAÇÃO, sem erros estruturais críticos detectados nesta análise.

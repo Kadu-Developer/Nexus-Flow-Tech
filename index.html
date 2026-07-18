@@ -381,24 +381,39 @@
   /* ── MARKETS ── */
   .markets { background: var(--gray-bg); }
   .markets-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;
   }
   .market-card {
-    background: white; border-radius: var(--radius);
-    padding: 28px 24px; border: 1px solid var(--border);
-    display: flex; align-items: center; gap: 16px;
-    transition: all .3s; box-shadow: var(--shadow-sm);
+    background: white; border-radius: calc(var(--radius) + 4px);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    overflow: hidden; position: relative;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    box-shadow: var(--shadow-sm);
+    min-height: 100%;
   }
-  .market-card:hover { transform: translateX(6px); border-color: var(--blue-mid); box-shadow: var(--shadow-md); }
-  .market-icon-wrap {
-    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
-    background: linear-gradient(135deg, rgba(11,58,99,0.06), rgba(21,101,169,0.1));
-    display: flex; align-items: center; justify-content: center; font-size: 22px;
-    transition: transform .3s;
+  .market-card:hover { transform: translateY(-6px); border-color: rgba(0,43,73,0.22); box-shadow: var(--shadow-md); }
+  .market-media {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f9fb 100%);
+    padding: 14px;
+    border-bottom: 1px solid rgba(195,199,206,.7);
   }
-  .market-card:hover .market-icon-wrap { transform: scale(1.15); }
-  .market-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 15px; color: var(--blue-dark); }
-  .market-card p { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+  .market-media img {
+    width: 100%; height: 100%; display: block; object-fit: cover;
+    border-radius: 18px;
+    background: #f7f9fb;
+  }
+  .market-content {
+    padding: 18px 18px 20px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .market-overline {
+    font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--surface-tint);
+  }
+  .market-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 18px; color: var(--blue-dark); line-height: 1.25; }
+  .market-card p { font-size: 14px; color: var(--text-light); line-height: 1.65; }
 
   /* ── BENEFITS ── */
   .benefits { background: white; }
@@ -1086,15 +1101,42 @@
     <p class="section-subtitle">Expertise setorial para entregar soluções que realmente funcionam na sua realidade.</p>
   </div>
   <div class="markets-grid">
-    <div class="market-card reveal"><div class="market-icon-wrap">🏭</div><div><h3>Indústria</h3><p>Automação de chão de fábrica e gestão de produção</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">🌾</div><div><h3>Agronegócio</h3><p>Rastreabilidade, colheita e gestão de estoque rural</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">🚛</div><div><h3>Logística</h3><p>Roteirização, WMS e controle de frota integrado</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">🏗️</div><div><h3>Construção Civil</h3><p>Gestão de obras, insumos e cronograma digital</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">📦</div><div><h3>Distribuição</h3><p>Pedidos, estoque e entrega em fluxo automatizado</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">🏥</div><div><h3>Saúde</h3><p>Prontuários, agendamentos e indicadores hospitalares</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">💰</div><div><h3>Financeiro</h3><p>Conciliação, compliance e relatórios automatizados</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">🛒</div><div><h3>Comércio</h3><p>Omnichannel, CRM e gestão de ponto de venda</p></div></div>
-    <div class="market-card reveal"><div class="market-icon-wrap">🤝</div><div><h3>Prestação de Serviços</h3><p>OS digital, atendimento e controle de SLA</p></div></div>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-industria.png" alt="Cena 3D premium de indústria automatizada com braço robótico, esteira e dashboards operacionais" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Indústria</h3><p>Automação de chão de fábrica, monitoramento de produção e visibilidade operacional em tempo real.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-agronegocio.png" alt="Cena 3D premium de agronegócio com colheitadeira inteligente, sensores e dashboards agrícolas" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Agronegócio</h3><p>Rastreabilidade, agricultura inteligente, telemetria de campo e gestão de safra orientada por dados.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-logistica.png" alt="Cena 3D premium de operação logística com armazém, caminhão e interfaces de monitoramento" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Logística</h3><p>Roteirização, WMS, rastreamento de entregas e sincronização inteligente de operações logísticas.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-construcao-civil.png" alt="Cena 3D premium de construção civil com canteiro conectado, grua e dashboards de obra" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Construção Civil</h3><p>Gestão de obras, controle de insumos, cronogramas e indicadores integrados para execução eficiente.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-distribuicao.png" alt="Cena 3D premium de centro de distribuição com doca, automação e fluxo inteligente de mercadorias" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Distribuição</h3><p>Pedidos, estoque, separação e expedição conectados para acelerar o fluxo da cadeia de abastecimento.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-saude.png" alt="Cena 3D premium de ambiente de saúde com equipamentos diagnósticos e painéis clínicos digitais" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Saúde</h3><p>Fluxos assistenciais, segurança da informação e indicadores clínicos para hospitais, clínicas e laboratórios.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-financeiro.png" alt="Cena 3D premium de operação financeira com cofre digital, POS e dashboards analíticos" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Financeiro</h3><p>Conciliação, compliance, automação de processos financeiros e visão analítica para decisões seguras.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-comercio.png" alt="Cena 3D premium de comércio conectado com loja, checkout e interfaces omnichannel" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Comércio</h3><p>Omnichannel, CRM, PDV e jornadas integradas para melhorar experiência, eficiência e conversão.</p></div>
+    </article>
+    <article class="market-card reveal">
+      <div class="market-media"><img src="assets/segmento-prestacao-servicos.png" alt="Cena 3D premium de prestação de serviços com frota leve, agenda operacional e dashboard de SLA" width="1024" height="1024" loading="lazy"></div>
+      <div class="market-content"><span class="market-overline">Segmento</span><h3>Prestação de Serviços</h3><p>OS digital, gestão de equipes em campo, SLAs e acompanhamento centralizado da operação.</p></div>
+    </article>
   </div>
 </section>
 
