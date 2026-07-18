@@ -224,10 +224,88 @@
       .footer-bottom { flex-direction:column; align-items:flex-start; gap:8px; }
     }
 
+
+    .mobile-menu { display:none; position:relative; }
+    .mobile-menu summary { list-style:none; }
+    .mobile-menu summary::-webkit-details-marker { display:none; }
+    .mobile-menu[open] .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .mobile-menu[open] .hamburger span:nth-child(2){opacity:0}
+    .mobile-menu[open] .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .mobile-menu-panel{position:fixed;top:64px;left:0;right:0;bottom:0;z-index:5000;display:flex;flex-direction:column;padding:20px 6% 32px;background:rgba(0,22,41,.985);overflow-y:auto}
+    .mobile-menu-panel a{min-height:54px;display:flex;align-items:center;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-size:18px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.12)}
+    @media(max-width:768px){.mobile-menu{display:block}.mobile-menu .hamburger{display:block}.mobile-nav{display:none!important}}
+    .hero::before,.hero::after{pointer-events:none}.hero>*{position:relative;z-index:10} header a,header button{position:relative;z-index:1}
+
+
+    /* ── HARDENING MOBILE: camadas, toque e navegação ── */
+      header#header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 3000;
+    }
+    .hero > *, .team, .cta > * { position: relative; z-index: 2; }
+    .hero::before, .hero::after, .photo-wrap::after, .quote-panel::before, .cta::before { pointer-events: none; }
+    .btn, .social-btn, button {
+      min-width: 44px;
+      min-height: 44px;
+      position: relative;
+      z-index: 3;
+      pointer-events: auto;
+    }
+    .whatsapp-float { min-width:44px; min-height:44px; pointer-events:auto; }
+    .mobile-menu-panel[hidden] { display: none !important; }
+    .mobile-menu-panel {
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      height: calc(100vh - 64px);
+      height: calc(100dvh - 64px);
+      z-index: 2900;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 20px 6% calc(32px + env(safe-area-inset-bottom));
+      background: rgba(0,22,41,.99);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      pointer-events: auto;
+    }
+    .mobile-menu-panel a {
+      width: 100%; min-height: 54px; display: flex; align-items: center;
+      padding: 10px 0; color: #fff; text-decoration: none;
+      font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 600;
+      border-bottom: 1px solid rgba(255,255,255,.12); pointer-events: auto;
+    }
+    .mobile-menu-panel .mobile-menu-cta {
+      justify-content: center; padding: 12px 18px; margin-top: 18px; border-bottom: 0;
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    html { overflow-x: clip; }
+    @media (max-width: 768px) {
+      html { scroll-behavior: auto; }
+      header#header { height: 64px; }
+      .hamburger {
+        display: flex; width: 48px; height: 48px; min-width: 48px; min-height: 48px;
+        align-items: center; justify-content: center; border: 0; background: transparent;
+        border-radius: 10px; position: relative; z-index: 3100;
+      }
+      .hero { padding-top: 112px; }
+      .hero .btn, .cta .btn { min-height: 52px; }
+      .reveal, .reveal-left, .reveal-right { opacity:1; transform:none; }
+    }
+    @media (min-width: 769px) {
+      #mobileMenuButton, #mobileMenuPanel { display: none !important; }
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .btn:hover, .whatsapp-float:hover { transform: none; }
+    }
+
 </style>
 </head>
 <body>
-  <header>
+  <header id="header">
     <a href="index.html" class="logo" aria-label="Nexus Flow Tech - Página inicial">
       <div class="logo-copy">
         <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
@@ -243,18 +321,51 @@
       <a href="index.html#contato">Contato</a>
     </nav>
     <a href="index.html#contato" class="btn btn-primary header-cta">Solicitar diagnóstico →</a>
-    <button type="button" class="hamburger" id="hamburger" aria-label="Abrir menu" aria-controls="mobileNav" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button type="button" class="hamburger" id="mobileMenuButton" aria-expanded="false" aria-controls="mobileMenuPanel" aria-label="Abrir menu de navegação"><span></span><span></span><span></span></button>
   </header>
-
-  <div class="mobile-nav" id="mobileNav">
-    <button type="button" class="mobile-close" id="mobileClose" aria-label="Fechar menu">×</button>
+  <nav class="mobile-menu-panel" id="mobileMenuPanel" aria-label="Navegação mobile" aria-hidden="true" hidden>
     <a href="index.html">Início</a>
     <a href="index.html#solucoes">Soluções</a>
     <a href="index.html#mercados">Mercados</a>
     <a href="index.html#como-funciona">Como funciona</a>
     <a href="sobre.html">Sobre</a>
     <a href="index.html#contato">Contato</a>
-  </div>
+    <a href="index.html#contato" class="btn btn-primary mobile-menu-cta">Solicitar diagnóstico</a>
+  </nav>
+
+<script>
+  // Menu mobile independente dos demais scripts da página.
+  (() => {
+    const button = document.getElementById('mobileMenuButton');
+    const panel = document.getElementById('mobileMenuPanel');
+    if (!button || !panel) return;
+
+    const setMenuState = (open) => {
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+      panel.hidden = !open;
+      panel.setAttribute('aria-hidden', String(!open));
+      document.body.classList.toggle('menu-open', open);
+    };
+
+    button.addEventListener('click', () => {
+      setMenuState(button.getAttribute('aria-expanded') !== 'true');
+    });
+
+    panel.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenuState(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setMenuState(false);
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768) setMenuState(false);
+    });
+  })();
+</script>
+
 
   <main>
     <section class="hero">
@@ -382,25 +493,16 @@
   </footer>
 
   <script>
-    const mobileNav = document.getElementById('mobileNav');
-    const menuButton = document.getElementById('hamburger');
-    const mobileClose = document.getElementById('mobileClose');
-    function setMenu(open){
-      mobileNav.classList.toggle('open', open);
-      document.body.classList.toggle('menu-open', open);
-      menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-    }
-    menuButton.addEventListener('click', () => setMenu(!mobileNav.classList.contains('open')));
-    mobileClose.addEventListener('click', () => setMenu(false));
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
-    document.addEventListener('keydown', event => { if(event.key === 'Escape') setMenu(false); });
-    window.addEventListener('resize', () => { if(window.innerWidth > 768) setMenu(false); });
+    // O menu mobile usa <details> e não depende de JavaScript.
 
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-      if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
-    }), {threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      }), {threshold:.12});
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
   </script>
 
 <a class="whatsapp-float" href="https://wa.me/5511989601000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Nexus%20Flow%20Tech%20e%20gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20de%20automa%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" aria-label="Falar com um especialista da Nexus Flow Tech pelo WhatsApp">
