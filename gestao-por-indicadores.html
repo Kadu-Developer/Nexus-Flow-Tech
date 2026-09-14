@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão por Indicadores (KPIs) | Nexus Flow Tech</title>
+  <link rel="canonical" href="https://nexusflowtech.com.br/gestao-por-indicadores.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Nexus Flow Tech">
+  <meta property="og:title" content="Gestão por Indicadores (KPIs) | Business Intelligence">
+  <meta property="og:description"
+    content="Implemente gestão por indicadores com KPIs alinhados à estratégia. Dashboards em tempo real, automação de coleta e análise de dados para tomada de decisão.">
+  <meta property="og:url" content="https://nexusflowtech.com.br/gestao-por-indicadores.html">
+  <meta property="og:image" content="https://nexusflowtech.com.br/assets/og-nexus-flow-tech.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#001629">
+  <link rel="icon" href="assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="description"
+    content="Gestão por indicadores (KPIs) com dashboards em tempo real, automação de coleta de dados, modelos de negócio alinhados e análise de performance operacional.">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=Geist+Mono:wght@500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --primary: #001629;
+      --primary-container: #002b49;
+      --secondary: #964900;
+      --orange: #ff8928;
+      --surface: #f7f9fb;
+      --surface-low: #f2f4f6;
+      --text: #191c1e;
+      --text-mid: #42474d;
+      --text-light: #73777e;
+      --border: #c3c7ce;
+      --white: #fff;
+      --shadow-sm: 0 2px 12px rgba(0, 22, 41, .08);
+      --shadow-md: 0 12px 36px rgba(0, 43, 73, .15);
+      --shadow-lg: 0 24px 70px rgba(0, 22, 41, .22);
+      --radius: 1rem;
+      --radius-sm: .5rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Hanken Grotesk', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 1000;
+      height: 72px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .logo-text span:first-child {
+      color: var(--primary);
+    }
+
+    .logo-text span:last-child {
+      color: var(--orange);
+    }
+
+    .logo-tech {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: .08em;
+    }
+
+    .logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-mid);
+      text-decoration: none;
+      padding: 8px 13px;
+      border-radius: 8px;
+      transition: .2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--primary-container);
+      background: rgba(0, 43, 73, .07);
+    }
+
+    .btn {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--radius-sm);
+      padding: 11px 20px;
+      transition: .25s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--primary-container), var(--primary));
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-orange {
+      color: white;
+      background: linear-gradient(135deg, var(--orange), var(--secondary));
+      box-shadow: 0 8px 24px rgba(150, 73, 0, .28);
+    }
+
+    .btn-orange:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(150, 73, 0, .38);
+    }
+
+    .hamburger {
+      display: none;
+      border: 0;
+      background: none;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--primary);
+      margin: 5px 0;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0, 22, 41, .98);
+      padding: 90px 6% 40px;
+      flex-direction: column;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      color: white;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 21px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 6%;
+      color: white;
+      border: 0;
+      background: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 70vh;
+      padding: 150px 5% 90px;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 70px;
+      align-items: center;
+      color: white;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(255, 137, 40, .18), transparent 30%),
+        linear-gradient(135deg, #001629 0%, #002b49 70%, #073f66 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .08);
+      right: -160px;
+      bottom: -260px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #ffb786;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(38px, 5vw, 66px);
+      line-height: 1.08;
+      letter-spacing: -.03em;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 span {
+      color: var(--orange);
+    }
+
+    .hero p {
+      font-size: clamp(17px, 1.5vw, 20px);
+      color: rgba(255, 255, 255, .72);
+      max-width: 700px;
+      line-height: 1.7;
+      margin-bottom: 34px;
+    }
+
+    .hero-panel {
+      padding: 34px;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-panel-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 22px;
+    }
+
+    .hero-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-value {
+      min-height: 104px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .065);
+      border: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .hero-value strong {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      font-size: 14px;
+      margin: 8px 0 4px;
+    }
+
+    .hero-value p {
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 0;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .hero-value-icon {
+      color: var(--orange);
+      font-size: 20px;
+    }
+
+    section {
+      padding: 100px 5%;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 54px;
+    }
+
+    .section-header.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 14px;
+    }
+
+    .tag::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary);
+      font-size: clamp(28px, 3vw, 42px);
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .team {
+      background: var(--surface);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      align-items: stretch;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: .35s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(0, 43, 73, .35);
+    }
+
+    .photo-wrap {
+      height: 410px;
+      background: #0b0b0b;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 40%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .72));
+      pointer-events: none;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 18%;
+      display: block;
+      transition: transform .5s;
+    }
+
+    .team-card:hover .photo-wrap img {
+      transform: scale(1.035);
+    }
+
+    .team-card.marcel .photo-wrap img {
+      object-position: 50% 18%;
+    }
+
+    .team-card.patrik .photo-wrap img {
+      object-position: 50% 10%;
+    }
+
+    .team-card.carlos .photo-wrap img {
+      object-position: 50% 12%;
+    }
+
+    .team-card.jose .photo-wrap img {
+      object-position: 50% 14%;
+    }
+
+    .team-role-overlay {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 18px;
+      z-index: 2;
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #ffb067;
+    }
+
+    .team-body {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .team-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 23px;
+      color: var(--primary);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .team-role {
+      font-family: 'Montserrat', sans-serif;
+      color: #0f6fc5;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 17px;
+    }
+
+    .team-description {
+      color: var(--text-mid);
+      font-size: 15px;
+      line-height: 1.68;
+      margin-bottom: 22px;
+    }
+
+    .credential {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid #e6e8ea;
+      color: #8a6300;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      min-height: 56px;
+    }
+
+    .credential span:first-child {
+      font-size: 18px;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 2px;
+      margin-bottom: 20px;
+    }
+
+    .skill {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: var(--surface-low);
+      border: 1px solid #e3e6e9;
+      color: var(--text-mid);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .synergy {
+      background: white;
+    }
+
+    .synergy-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .synergy-copy p {
+      font-size: 17px;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .synergy-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .synergy-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 15px;
+      align-items: start;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid #e2e5e8;
+      border-radius: 14px;
+    }
+
+    .synergy-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-container), var(--primary));
+      color: white;
+      font-size: 21px;
+    }
+
+    .synergy-item h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--primary);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .synergy-item p {
+      color: var(--text-light);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .quote-panel {
+      border-radius: 24px;
+      padding: 44px;
+      background: linear-gradient(145deg, #001629, #00345b);
+      color: white;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-panel::before {
+      content: '“';
+      position: absolute;
+      top: -36px;
+      right: 20px;
+      font-family: Georgia, serif;
+      font-size: 180px;
+      color: rgba(255, 137, 40, .12);
+    }
+
+    .quote-panel h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 31px;
+      line-height: 1.25;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .quote-panel h2 span {
+      color: var(--orange);
+    }
+
+    .quote-panel p {
+      color: rgba(255, 255, 255, .7);
+      font-size: 17px;
+      line-height: 1.75;
+      position: relative;
+    }
+
+    .quote-sign {
+      margin-top: 30px;
+      font-family: 'Geist Mono', monospace;
+      color: #ffb786;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      position: relative;
+    }
+
+    .cta {
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #001629, #0a4f8a);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0, rgba(255, 137, 40, .18), transparent 48%);
+    }
+
+    .cta .tag {
+      color: #ffb786;
+      justify-content: center;
+      position: relative;
+    }
+
+    .cta h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      max-width: 820px;
+      margin: 0 auto 18px;
+      position: relative;
+    }
+
+    .cta p {
+      color: rgba(255, 255, 255, .68);
+      max-width: 680px;
+      margin: 0 auto 32px;
+      font-size: 18px;
+      position: relative;
+    }
+
+    .cta .btn {
+      position: relative;
+    }
+
+    footer {
+      background: #191c1e;
+      color: rgba(255, 255, 255, .65);
+      padding: 58px 5% 28px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 55px;
+      margin-bottom: 42px;
+    }
+
+    .footer-logo .logo-text span:first-child {
+      color: white;
+    }
+
+    .footer-logo .logo-tech {
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .footer-logo img {
+      height: 40px;
+    }
+
+    .footer-copy {
+      margin-top: 14px;
+      max-width: 380px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, .48);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .social {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .1);
+      transition: .2s;
+    }
+
+    .social:hover {
+      color: white;
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      color: white;
+      margin-bottom: 17px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+    }
+
+    .footer-col a {
+      font-size: 14px;
+      color: rgba(255, 255, 255, .52);
+      text-decoration: none;
+    }
+
+    .footer-col a:hover {
+      color: var(--orange);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .09);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 12px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s, transform .7s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 1050px) {
+      nav,
+      .header-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-panel {
+        max-width: 750px;
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .synergy-grid {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      section {
+        padding: 72px 5%;
+      }
+
+      .hero {
+        padding: 120px 5% 70px;
+        gap: 38px;
+      }
+
+      .hero-values {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel {
+        padding: 24px;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quote-panel {
+        padding: 30px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-brand {
+        grid-column: auto;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+
+    /* WhatsApp flutuante e otimizações de toque */
+    a,
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .btn-orange,
+    .btn,
+    .form-submit,
+    .slider-arrow,
+    .slider-dot,
+    .hamburger,
+    .mobile-close,
+    .social-btn,
+    .social {
+      touch-action: manipulation;
+    }
+
+    section[id] {
+      scroll-margin-top: 88px;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 22px;
+      bottom: calc(22px + env(safe-area-inset-bottom));
+      z-index: 1700;
+      min-height: 56px;
+      padding: 0 20px 0 16px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #fff;
+      background: #1f9d55;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, .24);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
+      background: #178646;
+      box-shadow: 0 16px 38px rgba(0, 0, 0, .3);
+    }
+
+    .whatsapp-float svg {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        width: 58px;
+        height: 58px;
+        min-height: 58px;
+        padding: 0;
+        right: 16px;
+        bottom: calc(16px + env(safe-area-inset-bottom));
+      }
+
+      .whatsapp-float span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        height: 64px;
+        padding: 0 4%;
+      }
+
+      .hamburger {
+        display: block;
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        position: relative;
+        z-index: 2100;
+      }
+
+      .mobile-nav {
+        z-index: 2000;
+        padding: 82px 6% 32px;
+        overflow-y: auto;
+      }
+
+      .mobile-close {
+        z-index: 2101;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 10px;
+        right: 4%;
+      }
+
+      .mobile-nav a {
+        min-height: 52px;
+        display: flex;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, .12);
+      }
+
+      .hero .btn,
+      .cta .btn {
+        width: 100%;
+        min-height: 50px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+
+
+    .mobile-menu {
+      display: none;
+      position: relative;
+    }
+
+    .mobile-menu summary {
+      list-style: none;
+    }
+
+    .mobile-menu summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .mobile-menu[open] .hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg)
+    }
+
+    .mobile-menu[open] .hamburger span:nth-child(2) {
+      opacity: 0
+    }
+
+    .mobile-menu[open] .hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg)
+    }
+
+    .mobile-menu-panel {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 5000;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 6% 32px;
+      background: rgba(0, 22, 41, .985);
+      overflow-y: auto
+    }
+
+    .mobile-menu-panel a {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, .12)
+    }
+
+    @media(max-width:768px) {
+      .mobile-menu {
+        display: block
+      }
+
+      .mobile-menu .hamburger {
+        display: block
+      }
+
+      .mobile-nav {
+        display: none !important
+      }
+    }
+
+    .hero::before,
+    .hero::after {
+      pointer-events: none
+    }
+
+    .hero>* {
+      position: relative;
+      z-index: 10
+    }
+
+    header a,
+    header button {
+      position: relative;
+      z-index: 1
+    }
+
+
+    /* ── HARDENING MOBILE: camadas, toque e navegação ── */
+    header#header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3000;
+    }
+
+    .hero>*,
+    .team,
+    .cta>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero::before,
+    .hero::after,
+    .photo-wrap::after,
+    .quote-panel::before,
+    .cta::before {
+      pointer-events: none;
+    }
+
+    .btn,
+    .social-btn,
+    button {
+      min-width: 44px;
+      min-height: 44px;
+      position: relative;
+      z-index: 3;
+      pointer-events: auto;
+    }
+
+    .whatsapp-float {
+      min-width: 44px;
+      min-height: 44px;
+      pointer-events: auto;
+    }
+
+    .mobile-menu-panel[hidden] {
+      display: none !important;
+    }
+
+    .mobile-menu-panel {
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      height: calc(100vh - 64px);
+      height: calc(100dvh - 64px);
+      z-index: 2900;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 20px 6% calc(32px + env(safe-area-inset-bottom));
+      background: rgba(0, 22, 41, .99);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      pointer-events: auto;
+    }
+
+    .mobile-menu-panel a {
+      width: 100%;
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      pointer-events: auto;
+    }
+
+    .mobile-menu-panel .mobile-menu-cta {
+      justify-content: center;
+      padding: 12px 18px;
+      margin-top: 18px;
+      border-bottom: 0;
+    }
+
+    .hamburger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    html {
+      overflow-x: clip;
+    }
+
+    @media (max-width: 768px) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      header#header {
+        height: 64px;
+      }
+
+      .hamburger {
+        display: flex;
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        border-radius: 10px;
+        position: relative;
+        z-index: 3100;
+      }
+
+      .hero {
+        padding-top: 112px;
+      }
+
+      .hero .btn,
+      .cta .btn {
+        min-height: 52px;
+      }
+
+      .reveal,
+      .reveal-left,
+      .reveal-right {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (min-width: 769px) {
+      #mobileMenuButton,
+      #mobileMenuPanel {
+        display: none !important;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .btn:hover,
+      .whatsapp-float:hover {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header">
+    <a href="index.html" class="logo" aria-label="Nexus Flow Tech - Página inicial">
+      <div class="logo-copy">
+        <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
+        <div class="logo-tech">TECH</div>
+      </div>
+      <picture>
+            <source srcset="assets/nexus-flow-tech-logo.webp" type="image/webp">
+            <img src="assets/nexus-flow-tech-logo.png" alt="Símbolo da Nexus Flow Tech" loading="lazy" decoding="async">
+        </picture>
+    </a>
+    <nav aria-label="Navegação principal">
+      <a href="index.html#solucoes">Soluções</a>
+      <a href="index.html#mercados">Mercados</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+    <a href="index.html#contato" class="btn btn-primary header-cta">Solicitar diagnóstico →</a>
+    <button type="button" class="hamburger" id="mobileMenuButton" aria-expanded="false" aria-controls="mobileMenuPanel"
+      aria-label="Abrir menu de navegação"><span></span><span></span><span></span></button>
+  </header>
+  <nav class="mobile-menu-panel" id="mobileMenuPanel" aria-label="Navegação mobile" aria-hidden="true" hidden>
+    <a href="index.html">Início</a>
+    <a href="index.html#solucoes">Soluções</a>
+    <a href="index.html#mercados">Mercados</a>
+    <a href="index.html#como-funciona">Como funciona</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="index.html#contato">Contato</a>
+    <a href="index.html#contato" class="btn btn-primary mobile-menu-cta">Solicitar diagnóstico</a>
+  </nav>
+
+  <script>
+    // Menu mobile independente dos demais scripts da página.
+    (() => {
+      const button = document.getElementById('mobileMenuButton');
+      const panel = document.getElementById('mobileMenuPanel');
+      if (!button || !panel) return;
+
+      const setMenuState = (open) => {
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Fechar menu de navegação' : 'Abrir menu de navegação');
+        panel.hidden = !open;
+        panel.setAttribute('aria-hidden', String(!open));
+        document.body.classList.toggle('menu-open', open);
+      };
+
+      button.addEventListener('click', () => {
+        setMenuState(button.getAttribute('aria-expanded') !== 'true');
+      });
+
+      panel.addEventListener('click', (event) => {
+        if (event.target.closest('a')) setMenuState(false);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setMenuState(false);
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) setMenuState(false);
+      });
+    })();
+  </script>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Gestão por Indicadores</div>
+        <h1>Transforme dados em <span>decisões estratégicas</span></h1>
+        <p>Implemente uma cultura de gestão por indicadores com KPIs alinhados aos objetivos do negócio. Dashboards em tempo real, automação de coleta de dados e análise profunda para tomada de decisão orientada por evidências.</p>
+        <a href="#servicos" class="btn btn-orange">Conhecer nossos serviços ↓</a>
+      </div>
+      <aside class="hero-panel" aria-label="Benefícios da gestão por indicadores">
+        <div class="hero-panel-title">Por que escolher nossa gestão por indicadores?</div>
+        <div class="hero-values">
+          <div class="hero-value">
+            <div class="hero-value-icon">📊</div><strong>KPIs Alinhados</strong>
+            <p>Definição de indicadores estratégicos, operacionais e financeiros conectados aos objetivos do negócio.</p>
+          </div>
+          <div class="hero-value">
+            <div class="hero-value-icon">⚡</div><strong>Automação de Coleta</strong>
+            <p>Integração com múltiplas fontes de dados para coleta automática, limpa e confiável de informações.</p>
+          </div>
+          <div class="hero-value">
+            <div class="hero-value-icon">🔍</div><strong>Análise em Tempo Real</strong>
+            <p>Dashboard interativo com visão consolidada, drill-down e alertas inteligentes de desvios.</p>
+          </div>
+          <div class="hero-value">
+            <div class="hero-value-icon">📈</div><strong>Tomada de Decisão</strong>
+            <p>Apoio à gestão com insights acionáveis, forecasting e cenários para decisões estratégicas.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="team" id="servicos">
+      <div class="section-header center reveal">
+        <div class="tag">Nossos Serviços de BI</div>
+        <h2 class="section-title">Especialistas em transformar dados em inteligência estratégica para o negócio</h2>
+        <p class="section-subtitle">Oferecemos soluções completas de gestão por indicadores, desde a definição de KPIs até dashboards interativos e modelos de análise preditiva.</p>
+      </div>
+
+      <div class="team-grid">
+        <article class="team-card reveal">
+          <div class="photo-wrap">
+            <img src="assets/bi-kpis.jpg" alt="Definição de KPIs Estratégicos" loading="lazy" decoding="async">
+            <div class="team-role-overlay">Definição de KPIs</div>
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Definição de KPIs Estratégicos</h3>
+            <div class="team-role">Especialidade em BI</div>
+            <p class="team-description">Identificamos e estruturamos os indicadores mais relevantes para cada área do negócio, alinhando metas, targets e ações para acompanhamento contínuo.</p>
+          </div>
+        </article>
+
+        <article class="team-card reveal">
+          <div class="photo-wrap">
+            <img src="assets/bi-dashboards.jpg" alt="Dashboards Interativos em Power BI" loading="lazy" decoding="async">
+            <div class="team-role-overlay">Dashboards Interativos</div>
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Dashboards Interativos</h3>
+            <div class="team-role">Especialidade em BI</div>
+            <p class="team-description">Criamos dashboards dinâmicos no Power BI com visualizações personalizadas, filtros interativos, drill-through e acesso multiplataforma para todos os níveis hierárquicos.</p>
+          </div>
+        </article>
+
+        <article class="team-card reveal">
+          <div class="photo-wrap">
+            <img src="assets/bi-automacao.jpg" alt="Automação de Coleta e Tratamento de Dados" loading="lazy" decoding="async">
+            <div class="team-role-overlay">Automação de Dados</div>
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Automação de Coleta e Tratamento</h3>
+            <div class="team-role">Especialidade em BI</div>
+            <p class="team-description">Implementamos pipelines automatizados de ingestão, limpeza e transformação de dados de múltiplas fontes, garantindo qualidade, consistência e atualidade das informações.</p>
+          </div>
+        </article>
+
+        <article class="team-card reveal">
+          <div class="photo-wrap">
+            <img src="assets/bi-analise.jpg" alt="Análise Preditiva e Forecasting" loading="lazy" decoding="async">
+            <div class="team-role-overlay">Análise Preditiva</div>
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Análise Preditiva e Forecasting</h3>
+            <div class="team-role">Especialidade em BI</div>
+            <p class="team-description">Desenvolvemos modelos de análise preditiva para antecipar tendências, comportamentos e cenários futuros, apoiando o planejamento estratégico com base em dados históricos e em tempo real.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="synergy">
+      <div class="synergy-grid">
+        <div class="synergy-copy reveal">
+          <div class="tag">Metodologia</div>
+          <h2 class="section-title">Do dado bruto ao insight estratégico em etapas claras</h2>
+          <p>Nossa metodologia de gestão por indicadores garante que cada KPI tenha propósito, fonte confiável e impacto mensurável na tomada de decisão. Integración con sistemas existentes y automatización de procesos es clave.</p>
+          <div class="synergy-list">
+            <div class="synergy-item">
+              <div class="synergy-icon">01</div>
+              <div>
+                <h3>Diagnóstico dos dados</h3>
+                <p>Análise das fontes existentes, governança, qualidade e oportunidades de integração.</p>
+              </div>
+            </div>
+            <div class="synergy-item">
+              <div class="synergy-icon">02</div>
+              <div>
+                <h3>Mapeamento de KPIs</h3>
+                <p>Definição de indicadores estratégicos, operacionais e de processo com responsabilidades claras.</p>
+              </div>
+            </div>
+            <div class="synergy-item">
+              <div class="synergy-icon">03</div>
+              <div>
+                <h3>Implementação de dashboards</h3>
+                <p>Desenvolvimento de painéis interativos, visuais otimizados e acesso multiplataforma.</p>
+              </div>
+            </div>
+            <div class="synergy-item">
+              <div class="synergy-icon">04</div>
+              <div>
+                <h3>Evolução e otimização</h3>
+                <p>Monitoramento contínuo, refinamento de métricas e expansão dos casos de uso de BI.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <aside class="quote-panel reveal">
+          <h2>Dados são o novo petróleo, mas <span>indicadores bem definidos são o refino.</span></h2>
+          <p>Por isso, não entregamos apenas dashboards bonitos. Construímos ecossistemas de informação confiáveis que impulsionam a cultura de performance e ajudam a empresa a crescer com base em evidências concretas.</p>
+          <div class="quote-sign">Nexus Flow Tech · Dados · Inteligência · Resultados</div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="tag">Próximo passo</div>
+      <h2>Pronto para transformar seus dados em vantagem competitiva?</h2>
+      <p>Converse com nossos especialistas e descubra como implementar gestão por indicadores que realmente fazem a diferença.</p>
+      <a href="index.html#contato" class="btn btn-orange">Solicitar diagnóstico gratuito →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo footer-logo">
+          <div class="logo-copy">
+            <div class="logo-text"><span>Nexus</span> <span>Flow</span></div>
+            <div class="logo-tech">TECH</div>
+          </div>
+          <picture>
+            <source srcset="assets/nexus-flow-tech-logo.webp" type="image/webp">
+            <img src="assets/nexus-flow-tech-logo.png" alt="Símbolo da Nexus Flow Tech" loading="lazy" decoding="async">
+          </picture>
+        </a>
+        <p class="footer-copy">Inteligência estratégica para operações de alta performance. Automação, dados, IA e engenharia trabalhando de forma integrada.</p>
+        <div class="footer-social">
+          <a class="social" href="https://www.linkedin.com/company/nexus-flow-tech/posts/?feedView=all" target="_blank"
+            rel="noopener noreferrer" aria-label="LinkedIn da Nexus Flow Tech">in</a>
+          <a class="social" href="https://wa.me/5511989601000" target="_blank" rel="noopener noreferrer"
+            aria-label="WhatsApp da Nexus Flow Tech">W</a>
+          <a class="social" href="mailto:marcel@nexusflowtech.com.br" aria-label="E-mail da Nexus Flow Tech">@</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#solucoes">Soluções</a></li>
+          <li><a href="index.html#mercados">Mercados</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato e privacidade</h4>
+        <ul>
+          <li><a href="mailto:marcel@nexusflowtech.com.br">marcel@nexusflowtech.com.br</a></li>
+          <li><a href="https://wa.me/5511989601000">(11) 98960-1000</a></li>
+          <li><a href="politica-de-privacidade.html">Política de Privacidade</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Nexus Flow Tech. Todos os direitos reservados.</span><span>Tecnologia ·
+        Dados · Resultados</span></div>
+  </footer>
+
+  <script>
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      }), { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    }
+  </script>
+
+  <a class="whatsapp-float"
+    href="https://wa.me/5511989601000?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Nexus%20Flow%20Tech%20e%20gostaria%20de%20conhecer%20as%20solu%C3%A7%C3%B5es%20de%20gest%C3%A3o%20por%20indicadores."
+    target="_blank" rel="noopener noreferrer" aria-label="Falar com um especialista da Nexus Flow Tech pelo WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="currentColor"
+        d="M19.11 17.21c-.25-.13-1.48-.73-1.71-.81-.23-.08-.4-.13-.57.13-.17.25-.65.81-.8.98-.15.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.38-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.57-1.38-.78-1.89-.21-.5-.42-.43-.57-.44h-.49c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.09 0 1.23.9 2.42 1.02 2.59.13.17 1.76 2.69 4.27 3.77.6.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.1-.23-.17-.48-.29ZM16.04 3C8.87 3 3.04 8.83 3.04 16c0 2.29.6 4.53 1.73 6.5L3 29l6.68-1.75A12.94 12.94 0 0 0 16.04 29C23.21 29 29.04 23.17 29.04 16S23.21 3 16.04 3Zm0 23.63c-2.08 0-4.11-.56-5.88-1.61l-.42-.25-3.96 1.04 1.06-3.86-.27-.43A10.58 10.58 0 0 1 5.41 16c0-5.86 4.77-10.63 10.63-10.63S26.67 10.14 26.67 16s-4.77 10.63-10.63 10.63Z" />
+    </svg>
+    <span>Fale com um especialista</span>
+  </a>
+</body>
+
+</html>
